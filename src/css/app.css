@@ -1,0 +1,76 @@
+:root {
+    --f7-theme-color: #ff0a02;
+    --f7-theme-color-shade: #D20500;
+    --f7-theme-color-tint: #FF4540;
+    --f7-theme-color-rgb: 26, 186, 212;
+
+    --f7-navbar-bg-color: var(--f7-theme-color);
+    --f7-navbar-link-color: #ffffff;
+    --f7-navbar-text-color: #ffffff;
+
+    --f7-toolbar-bg-color: var(--f7-theme-color);
+    --f7-toolbar-text-color: #ffffff;
+    --f7-toolbar-link-color: #ffffff;
+
+    --f7-statusbar-bg-color: var(--f7-theme-color);
+}
+
+.statusbar {
+    background: var(--f7-theme-color);
+}
+
+.ios .toolbar {
+    background-color: transparent;
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.4) !important;
+}
+
+.card p {
+    font-size: 18px;
+    margin: -20px 10px 5px 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.card h1 {
+    color: var(--f7-theme-color) !important;
+    padding: 10px !important;
+    font-weight: 500 !important;
+}
+
+.card h3 {
+    color: var(--f7-theme-color) !important;
+    padding: 10px !important;
+    font-weight: 400 !important;
+    margin-top: 5px !important;
+}
+
+.calendar-inline .toolbar-top, .ios .toolbar.toolbar-top, .ios .sheet .toolbar {
+    top: 0 !important;
+    background-color: var(--f7-theme-color) !important;
+}
+
+.alert {
+    position: relative;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    padding: 6px;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.center {
+    text-align: center;
+}
