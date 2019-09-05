@@ -12,29 +12,17 @@
 
         <f7-block>
             <f7-card outline>
-                <div @click="selectDoctor">
+                <div @click="viewSchedule">
                     <h1>
-                        <f7-icon material="account_box" size="48px"></f7-icon>&nbsp;&nbsp;Facultativa/o
+                        <f7-icon material="event_note" size="48px"></f7-icon>&nbsp;&nbsp;Tráfico
                     </h1>
-                    <p><strong>{{ getDoctor[1] }}</strong></p>
-                    <p>
-                        <small><em>{{ getSpecialty[1] }}</em></small>
-                    </p>
                 </div>
             </f7-card>
 
             <f7-card outline>
                 <div @click="newAppointment">
                     <h1>
-                        <f7-icon material="library_add" size="48px"></f7-icon>&nbsp;&nbsp;Nueva Cita
-                    </h1>
-                </div>
-            </f7-card>
-
-            <f7-card outline>
-                <div @click="viewSchedule">
-                    <h1>
-                        <f7-icon material="event_note" size="48px"></f7-icon>&nbsp;&nbsp;Agenda
+                        <f7-icon material="library_add" size="48px"></f7-icon>&nbsp;&nbsp;Nota de Carga
                     </h1>
                 </div>
             </f7-card>
@@ -42,7 +30,7 @@
             <f7-card outline>
                 <div @click="newPatient">
                     <h1>
-                        <f7-icon material="assignment_ind" size="48px"></f7-icon>&nbsp;&nbsp;Nuevo Paciente
+                        <f7-icon material="assignment_ind" size="48px"></f7-icon>&nbsp;&nbsp;Nuevo Cliente
                     </h1>
                 </div>
             </f7-card>
