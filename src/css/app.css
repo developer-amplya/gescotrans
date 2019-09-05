@@ -1,8 +1,8 @@
 :root {
-    --f7-theme-color: #ff0a02;
-    --f7-theme-color-shade: #D20500;
-    --f7-theme-color-tint: #FF4540;
-    --f7-theme-color-rgb: 26, 186, 212;
+    --f7-theme-color: #107ED6;
+    --f7-theme-color-shade: #0D66AE;
+    --f7-theme-color-tint: #53ABF2;
+    --f7-theme-color-rgb: 16, 126, 214;
 
     --f7-navbar-bg-color: var(--f7-theme-color);
     --f7-navbar-link-color: #ffffff;
