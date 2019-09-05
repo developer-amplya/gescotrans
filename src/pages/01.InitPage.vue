@@ -30,14 +30,18 @@
     export default {
         name: "InitPage",
         mounted() {
-            if (localStorage.ipgsbase === undefined)
-                localStorage.ipgsbase = "amplya.selfip.com";
-            if (localStorage.puertogsbase === undefined)
-                localStorage.puertogsbase = "8121";
-            if (localStorage.gestgsbase === undefined)
-                localStorage.gestgsbase = "amplya";
-            if (localStorage.ejagsbase === undefined) localStorage.ejagsbase = "dmo";
-            if (localStorage.lastuser === undefined) localStorage.lastuser = "";
+            if (localStorage.aytrans_ipgsbase === undefined)
+                localStorage.aytrans_ipgsbase = "amplya.selfip.com";
+            if (localStorage.aytrans_gestgsbase === undefined)
+                localStorage.aytrans_gestgsbase = "amplya";
+            if (localStorage.aytrans_aplgsbase === undefined)
+                localStorage.aytrans_aplgsbase = "ay_obras";
+            if (localStorage.aytrans_ejagsbase === undefined)
+                localStorage.aytrans_ejagsbase = "dmo";
+            if (localStorage.aytrans_puertogsbase === undefined)
+                localStorage.aytrans_puertogsbase = "8121";
+            if (localStorage.aytrans_lastuser === undefined)
+                localStorage.lastuser = "";
 
             setTimeout(() => {
                 this.$f7router.navigate("/login");
