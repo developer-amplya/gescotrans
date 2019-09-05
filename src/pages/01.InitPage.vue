@@ -40,8 +40,6 @@
                 localStorage.aytrans_ejagsbase = "dmo";
             if (localStorage.aytrans_puertogsbase === undefined)
                 localStorage.aytrans_puertogsbase = "8121";
-            if (localStorage.aytrans_lastuser === undefined)
-                localStorage.lastuser = "";
 
             setTimeout(() => {
                 this.$f7router.navigate("/login");

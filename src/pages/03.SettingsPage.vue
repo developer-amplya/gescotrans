@@ -7,6 +7,7 @@
                 <f7-list-input
                         label="IP/URL"
                         type="text"
+                        autocapitalize="off"
                         :value="ipgsbase"
                         @input="ipgsbase = $event.target.value"
                         clear-button
@@ -14,17 +15,9 @@
                 ></f7-list-input>
 
                 <f7-list-input
-                        label="Puerto"
-                        type="text"
-                        :value="puertogsbase"
-                        @input="puertogsbase = $event.target.value"
-                        clear-button
-                        required
-                ></f7-list-input>
-
-                <f7-list-input
                         label="Gestora"
                         type="text"
+                        autocapitalize="off"
                         :value="gestgsbase"
                         @input="gestgsbase = $event.target.value"
                         clear-button
@@ -32,10 +25,31 @@
                 ></f7-list-input>
 
                 <f7-list-input
+                        label="Aplicación"
+                        type="text"
+                        autocapitalize="off"
+                        :value="aplgsbase"
+                        @input="aplgsbase = $event.target.value"
+                        clear-button
+                        required
+                ></f7-list-input>
+
+                <f7-list-input
                         label="Ejercicio"
                         type="text"
+                        autocapitalize="off"
                         :value="ejagsbase"
                         @input="ejagsbase = $event.target.value"
+                        clear-button
+                        required
+                ></f7-list-input>
+
+                <f7-list-input
+                        label="Puerto"
+                        type="text"
+                        autocapitalize="off"
+                        :value="puertogsbase"
+                        @input="puertogsbase = $event.target.value"
                         clear-button
                         required
                 ></f7-list-input>
@@ -67,19 +81,21 @@
 
         data() {
             return {
-                ipgsbase: localStorage.ipgsbase,
-                puertogsbase: localStorage.puertogsbase,
-                gestgsbase: localStorage.gestgsbase,
-                ejagsbase: localStorage.ejagsbase
+                ipgsbase: localStorage.aytrans_ipgsbase,
+                gestgsbase: localStorage.aytrans_gestgsbase,
+                aplgsbase: localStorage.aytrans_aplgsbase,
+                ejagsbase: localStorage.aytrans_ejagsbase,
+                puertogsbase: localStorage.aytrans_puertogsbase,
             };
         },
         methods: {
             saveSettings() {
                 // Save settings into Local Storage
-                localStorage.ipgsbase = this.ipgsbase;
-                localStorage.puertogsbase = this.puertogsbase;
-                localStorage.gestgsbase = this.gestgsbase;
-                localStorage.ejagsbase = this.ejagsbase;
+                localStorage.aytrans_ipgsbase = this.ipgsbase;
+                localStorage.aytrans_gestgsbase = this.gestgsbase;
+                localStorage.aytrans_aplgsbase = this.aplgsbase,
+                localStorage.aytrans_ejagsbase = this.ejagsbase;
+                localStorage.aytrans_puertogsbase = this.puertogsbase;
 
                 let notification = this.$f7.toast.create({
                     position: 'top',

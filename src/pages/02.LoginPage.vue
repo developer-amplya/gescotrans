@@ -10,20 +10,26 @@
         <f7-block inner>
             <f7-list form no-hairlines>
                 <!-- USUARIO -->
-                    <f7-list-input
-                            type="text"
-                            label="Usuario"
-                            :value="log_in.usuario"
-                            @input="log_in.usuario = $event.target.value"
-                    ></f7-list-input>
+                <f7-list-input
+                        type="text"
+                        label="Usuario"
+                        :value="log_in.usuario"
+                        @input="log_in.usuario = $event.target.value"
+                ></f7-list-input>
 
                 <!-- PASSWORD -->
-                    <f7-list-input
-                            type="password"
-                            label="Contraseña"
-                            :value="log_in.contrasenya"
-                            @input="log_in.contrasenya = $event.target.value"
-                    ></f7-list-input>
+                <f7-list-input
+                        type="password"
+                        label="Contraseña"
+                        :value="log_in.contrasenya"
+                        @input="log_in.contrasenya = $event.target.value"
+                ></f7-list-input>
+
+                <f7-list-item>
+                    <label>Guardar datos</label>
+                    <f7-toggle @toggleChange="toggleStoreUserData" ref="toggle_user_data"></f7-toggle>
+                </f7-list-item>
+
             </f7-list>
         </f7-block>
 
@@ -43,31 +49,56 @@
         data() {
             return {
                 log_in: {
-                    usuario: localStorage.lastuser,
+                    usuario: "",
                     contrasenya: ""
                 }
             };
         },
         mounted() {
-          if(this.action === 'logout') {
-              this.resetStore();
-          }
+
+            // Se resetea store
+            if (this.action === 'logout') {
+                this.resetStore();
+            }
+
+            // Se recuperan los datos de acceso guardados
+            if (localStorage.aytrans_uname !== undefined) {
+                this.log_in.usuario = localStorage.aytrans_uname;
+            }
+
+            if (localStorage.aytrans_upass !== undefined) {
+                this.log_in.contrasenya = localStorage.aytrans_upass;
+            }
+
+            if (localStorage.aytrans_ustore === "true") {
+                this.$refs.toggle_user_data.toggle();
+            }
+
         },
         methods: {
+            toggleStoreUserData(e) {
+                if (e === true) {
+                    localStorage.aytrans_uname = this.log_in.usuario;
+                    localStorage.aytrans_upass = this.log_in.contrasenya;
+                    localStorage.aytrans_ustore = "true";
+                } else {
+                    localStorage.aytrans_uname = "";
+                    localStorage.aytrans_upass = "";
+                    localStorage.aytrans_ustore = false;
+                }
+            },
             do_login() {
-                // Save the last user
-                localStorage.lastuser = this.log_in.usuario;
-                // this.$f7router.navigate("/home");
                 // Preloader On
                 this.$f7.dialog.preloader("Accediendo...");
 
                 let bodyFormData = new FormData();
                 bodyFormData.set("user", this.log_in.usuario);
                 bodyFormData.set("pass", this.log_in.contrasenya);
-                bodyFormData.set("ipgsbase", localStorage.ipgsbase);
-                bodyFormData.set("puertogsbase", localStorage.puertogsbase);
-                bodyFormData.set("gestgsbase", localStorage.gestgsbase);
-                bodyFormData.set("ejagsbase", localStorage.ejagsbase);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
 
                 axios({
                     method: "post",
@@ -121,10 +152,11 @@
                 let bodyFormData = new FormData();
                 bodyFormData.set("user", this.log_in.usuario);
                 bodyFormData.set("pass", this.log_in.contrasenya);
-                bodyFormData.set("ipgsbase", localStorage.ipgsbase);
-                bodyFormData.set("puertogsbase", localStorage.puertogsbase);
-                bodyFormData.set("gestgsbase", localStorage.gestgsbase);
-                bodyFormData.set("ejagsbase", localStorage.ejagsbase);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
 
                 axios({
                     method: "post",
