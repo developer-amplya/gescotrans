@@ -13,16 +13,16 @@
                 <f7-list-input
                         type="text"
                         label="Usuario"
-                        :value="log_in.usuario"
-                        @input="log_in.usuario = $event.target.value"
+                        :value="log_in.user"
+                        @input="log_in.user = $event.target.value"
                 ></f7-list-input>
 
                 <!-- PASSWORD -->
                 <f7-list-input
                         type="password"
                         label="Contraseña"
-                        :value="log_in.contrasenya"
-                        @input="log_in.contrasenya = $event.target.value"
+                        :value="log_in.password"
+                        @input="log_in.password = $event.target.value"
                 ></f7-list-input>
 
                 <f7-list-item>
@@ -49,8 +49,8 @@
         data() {
             return {
                 log_in: {
-                    usuario: "",
-                    contrasenya: ""
+                    user: "",
+                    password: ""
                 }
             };
         },
@@ -78,8 +78,8 @@
         methods: {
             toggleStoreUserData(e) {
                 if (e === true) {
-                    localStorage.aytrans_uname = this.log_in.usuario;
-                    localStorage.aytrans_upass = this.log_in.contrasenya;
+                    localStorage.aytrans_uname = this.log_in.user;
+                    localStorage.aytrans_upass = this.log_in.password;
                     localStorage.aytrans_ustore = "true";
                 } else {
                     localStorage.aytrans_uname = "";
@@ -92,8 +92,8 @@
                 this.$f7.dialog.preloader("Accediendo...");
 
                 let bodyFormData = new FormData();
-                bodyFormData.set("user", this.log_in.usuario);
-                bodyFormData.set("pass", this.log_in.contrasenya);
+                bodyFormData.set("user", this.log_in.user);
+                bodyFormData.set("pass", this.log_in.password);
                 bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
                 bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
                 bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
@@ -107,7 +107,7 @@
                     timeout: 15000
                 })
                     .then(response => {
-                        //console.log(response);
+                        console.log(response);
                         // Preloader Off
                         this.$f7.dialog.close();
 
@@ -123,59 +123,14 @@
                             );
 
                             // Set state
-                            this.$store.dispatch("setUserName", this.log_in.usuario);
-                            this.$store.dispatch("setUserPass", this.log_in.contrasenya);
-                            this.$store.dispatch("setDoctors", specialties);
-                            this.$store.dispatch("setReasonsList", reasons);
-                            this.$store.dispatch("setCancelList", cancel_reasons);
-
-                            // Retrieve patients list
-                            this.fetchPatientsList();
+                            this.$store.dispatch("setUserName", this.log_in.user);
+                            this.$store.dispatch("setUserPass", this.log_in.password);
+                            this.$store.dispatch("setUserCode", response.data.user_code);
 
                             // Navigate
                             this.$f7router.navigate("/home");
                         } else {
                             this.$f7.dialog.alert("No se ha podido conectar", "Error");
-                        }
-                    })
-                    .catch(error => {
-                        //console.log(error);
-                        // Preloader Off
-                        this.$f7.dialog.close();
-                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
-                    });
-            },
-            fetchPatientsList() {
-                // Preloader On
-                this.$f7.dialog.preloader("Cargando...");
-
-                let bodyFormData = new FormData();
-                bodyFormData.set("user", this.log_in.usuario);
-                bodyFormData.set("pass", this.log_in.contrasenya);
-                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
-                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
-                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
-                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
-                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
-
-                axios({
-                    method: "post",
-                    url: WS_PATH + "get_pacientes.php",
-                    data: bodyFormData,
-                    timeout: 15000
-                })
-                    .then(response => {
-                        //console.log(response);
-                        // Preloader Off
-                        this.$f7.dialog.close();
-
-                        if (response.data.usuario_valido === "ok") {
-                            let patients = JSON.parse(
-                                this.decodeEntities(JSON.stringify(response.data.pacientes))
-                            );
-                            this.$store.dispatch('setPatientsList', patients);
-                        } else {
-                            this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
                         }
                     })
                     .catch(error => {
