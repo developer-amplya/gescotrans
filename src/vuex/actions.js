@@ -4,6 +4,7 @@ import {
     SET_USER_PASS,
     SET_USER_CODE,
     SET_LOAD_STATES,
+    SET_SCHEDULE,
 } from './mutations';
 
 export default {
@@ -18,5 +19,8 @@ export default {
     },
     setLoadStates({commit}, loadStates) {
         commit(SET_LOAD_STATES, loadStates);
+    },
+    setSchedule({commit}, data) {
+        commit(SET_SCHEDULE, data);
     },
 };

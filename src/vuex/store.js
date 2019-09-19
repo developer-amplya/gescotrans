@@ -6,6 +6,7 @@ import {
     SET_USER_NAME,
     SET_USER_PASS,
     SET_USER_CODE, SET_LOAD_STATES,
+    SET_SCHEDULE,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -15,6 +16,7 @@ const state = {
     password: '',
     user_code: '',
     load_states: {},
+    schedule: {},
 }
 
 const mutations = {
@@ -29,6 +31,9 @@ const mutations = {
     },
     [SET_LOAD_STATES](state, loadStates) {
         state.load_states = loadStates;
+    },
+    [SET_SCHEDULE](state, data) {
+        state.schedule = data;
     },
 }
 

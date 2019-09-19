@@ -11,4 +11,7 @@ export default {
     getLoadStates(state) {
         return (state.load_states);
     },
+    getSchedule(state) {
+        return (state.schedule);
+    },
 };
