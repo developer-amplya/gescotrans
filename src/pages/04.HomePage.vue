@@ -49,7 +49,7 @@
         methods: {
             viewTraffic()
             {
-                //
+                this.$f7router.navigate("/view-traffic");
             },
             newLoadNote()
             {

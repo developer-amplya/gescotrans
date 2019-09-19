@@ -66,7 +66,7 @@
     import {mapGetters} from "vuex";
 
     export default {
-        name: "SchedulePage",
+        name: "ViewTraffic",
         data() {
             return {
                 lista_fechas: '',
