@@ -107,19 +107,15 @@
                     timeout: 15000
                 })
                     .then(response => {
+
                         console.log(response);
+
                         // Preloader Off
                         this.$f7.dialog.close();
 
                         if (response.data.usuario_valido === "ok") {
-                            let specialties = JSON.parse(
-                                this.decodeEntities(JSON.stringify(response.data.especialidades))
-                            );
-                            let reasons = JSON.parse(
-                                this.decodeEntities(JSON.stringify(response.data.motivos))
-                            );
-                            let cancel_reasons = JSON.parse(
-                                this.decodeEntities(JSON.stringify(response.data.motivos_anulacion))
+                            let load_states = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.ls_estados_carga))
                             );
 
                             // Set state
