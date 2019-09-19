@@ -1,9 +1,11 @@
 <template>
-    <f7-page @page:afterin="retrieveData" @page:beforeout="$refs.appointment_sheet.close()">
-        <!-- Navbar -->
+    <f7-page
+            @page:afterin="retrieveData"
+            @page:beforeout="$refs.actions_sheet.close()">
+
         <!-- Navbar -->
         <f7-navbar back-link>
-            <f7-nav-title>Agenda: Dr/a. {{ getDoctor[1] }}</f7-nav-title>
+            <f7-nav-title>Tráfico de {{ getUserName }}</f7-nav-title>
             <f7-nav-right>
                 <f7-link panel-open="right">
                     <f7-icon material="menu"></f7-icon>
@@ -11,19 +13,14 @@
             </f7-nav-right>
         </f7-navbar>
 
-        <!-- Content -->
-        <!--
-            Additional "timeline-horizontal" class to enable Horizontal timeline
-            Additional "col-50" to define column width (50%)
-            Additional "tablet-20" to define column width for tablets (20%)
-        -->
-        <div class="timeline timeline-horizontal col-50 tablet-20">
+        <!-- Timeline -->
+        <div class="timeline timeline-horizontal col-100 tablet-50">
             <!-- Timeline Item (Day) -->
             <div class="timeline-item" v-for="(fecha, index) in lista_fechas" :key="index">
                 <div class="timeline-item-date">{{ getSchedule[fecha][0] }}</div>
                 <div class="timeline-item-content">
                     <div class="timeline-item-inner" v-for="(value, key, index) in getSchedule[fecha][1]" :key="index">
-                        <div @click="openSheet(value[0], value[3], value[4])">
+                        <div @click="openActionsSheet(value[0], value[3], value[4])">
                             <div class="timeline-item-time">{{ value[1] }}</div>
                             <div class="timeline-item-title">{{ value[2] }}</div>
                             <div class="timeline-item-subtitle">{{ value[3] }}</div>
@@ -33,30 +30,25 @@
             </div>
         </div>
 
-        <f7-sheet class="sheet" ref="appointment_sheet" @sheet:closed="sheetOpened = false">
-            <f7-toolbar>
-                <div class="left"></div>
-                <div class="right">
-                    <f7-link sheet-close>Cerrar</f7-link>
-                </div>
-            </f7-toolbar>
+        <!-- Sheet -->
+        <f7-sheet class="sheet" ref="actions_sheet" @sheet:closed="sheetOpened = false">
             <!-- Scrollable sheet content -->
             <f7-page-content>
                 <f7-block>
-                    <h3>{{ patientName }}</h3>
-                    <p>
-                        <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                        <a class="external" :href="'tel:' + patientPhone"><em>{{ patientPhone }}</em></a>
-                    </p>
+                    <f7-button outline large @click="open_states_picker" sheet-close>Cambiar estado</f7-button>
                     <br>
-                    <f7-button large raised fill :href="'/cancel-schedule/' + appointmentCode" sheet-close>ANULAR CITA</f7-button>
+                    <f7-button outline large sheet-close>Escanear nota de entrega</f7-button>
+                    <br>
+                    <f7-button outline large sheet-close>Cancelar</f7-button>
                 </f7-block>
             </f7-page-content>
         </f7-sheet>
 
-        <f7-fab position="right-bottom" slot="fixed" color="red" href="/new-appointment">
+        <!-- Floating Action Button -->
+        <f7-fab position="right-bottom" slot="fixed" color="blue" href="/new-entry">
             <f7-icon ios="f7:add" md="material:add"></f7-icon>
         </f7-fab>
+
     </f7-page>
 </template>
 
@@ -70,15 +62,43 @@
         data() {
             return {
                 lista_fechas: '',
-                appointmentCode: '',
-                patientName: '',
-                patientPhone: ''
+                state_code: '',
+                states_codes: [],
+                states_names: [],
             }
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass", "getDoctor", "getSchedule"])
+            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates"])
+        },
+        mounted() {
+            if(this.getLoadStates.length > 1)
+            {
+                // Get separated lists from states list (codes & names)
+                this.getLoadStates.forEach((item) => {
+
+                    this.states_codes.push(item[0]);
+                    this.states_names.push(item[1]);
+                });
+            }
         },
         methods: {
+            open_states_picker() {
+                var statesPicker = this.$f7.picker.create({
+                    rotateEffect: true,
+                    scrollToInput: true,
+                    momentumRatio: 14,
+                    toolbar: true,
+                    toolbarCloseText: "Hecho",
+                    cols: [
+                        {
+                            textAlign: 'center',
+                            values: this.states_codes,
+                            displayValues: this.states_names,
+                        }
+                    ]
+                });
+                statesPicker.open();
+            },
             retrieveData() {
                 // Preloader On
                 this.$f7.dialog.preloader("Cargando...");
@@ -87,24 +107,28 @@
                 let bodyFormData = new FormData();
                 bodyFormData.set("user", this.getUserName);
                 bodyFormData.set("pass", this.getUserPass);
-                bodyFormData.set("cod_doctor", this.getDoctor[0]);
-                bodyFormData.set("ipgsbase", localStorage.ipgsbase);
-                bodyFormData.set("puertogsbase", localStorage.puertogsbase);
-                bodyFormData.set("gestgsbase", localStorage.gestgsbase);
-                bodyFormData.set("ejagsbase", localStorage.ejagsbase);
+                bodyFormData.set("cod_chofer", this.getUserCode);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
 
                 axios({
                     method: "post",
-                    url: WS_PATH + "get_agenda_doctor.php",
+                    url: WS_PATH + "get_agenda_chofer.php",
                     data: bodyFormData,
                     timeout: 15000
                 })
                     .then(response => {
-                        //console.log(response);
+
+                        console.log(response);
+
                         // Preloader Off
                         this.$f7.dialog.close();
 
                         if (response.data.usuario_valido === "ok") {
+
                             let schedule = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.agenda))
                             );
@@ -113,6 +137,7 @@
                             this.$store.dispatch("setSchedule", schedule);
 
                             this.lista_fechas = response.data.lista_fechas;
+
                         } else {
                             this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
                         }
@@ -124,11 +149,17 @@
                         this.$f7.dialog.alert("No se ha podido conectar", "Error");
                     });
             },
-            openSheet(code, patient, phone ) {
-                this.appointmentCode = code;
+            openActionsSheet() {
+                /*this.appointmentCode = code;
                 this.patientName = patient;
-                this.patientPhone = phone;
-                this.$refs.appointment_sheet.open();
+                this.patientPhone = phone;*/
+                this.$refs.actions_sheet.open();
+            },
+            openChangeStateSheet() {
+                /*this.appointmentCode = code;
+                this.patientName = patient;
+                this.patientPhone = phone;*/
+                this.$refs.change_state_sheet.open();
             },
             decodeEntities(encodedString) {
                 var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
