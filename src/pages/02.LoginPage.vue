@@ -63,11 +63,11 @@
 
             // Se recuperan los datos de acceso guardados
             if (localStorage.aytrans_uname !== undefined) {
-                this.log_in.usuario = localStorage.aytrans_uname;
+                this.log_in.user = localStorage.aytrans_uname;
             }
 
             if (localStorage.aytrans_upass !== undefined) {
-                this.log_in.contrasenya = localStorage.aytrans_upass;
+                this.log_in.password = localStorage.aytrans_upass;
             }
 
             if (localStorage.aytrans_ustore === "true") {
