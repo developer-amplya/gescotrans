@@ -1,1 +1,1 @@
-export const WS_PATH = 'https://clinicas.amplya.es/ws-clinicas/'
+export const WS_PATH = 'https://transportes.amplya.es/ws-transportes/'
