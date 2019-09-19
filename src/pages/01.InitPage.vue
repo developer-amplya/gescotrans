@@ -35,7 +35,7 @@
             if (localStorage.aytrans_gestgsbase === undefined)
                 localStorage.aytrans_gestgsbase = "amplya";
             if (localStorage.aytrans_aplgsbase === undefined)
-                localStorage.aytrans_aplgsbase = "ay_obras";
+                localStorage.aytrans_aplgsbase = "ay_trans";
             if (localStorage.aytrans_ejagsbase === undefined)
                 localStorage.aytrans_ejagsbase = "dmo";
             if (localStorage.aytrans_puertogsbase === undefined)
