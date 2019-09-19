@@ -8,4 +8,7 @@ export default {
     getUserCode(state) {
         return (state.user_code);
     },
+    getLoadStates(state) {
+        return (state.load_states);
+    },
 };
