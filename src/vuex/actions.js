@@ -24,7 +24,7 @@ export default {
     setUserPass({commit}, userPass) {
         commit(SET_USER_PASS, userPass);
     },
-    setDoctors({commit}, userCode) {
+    setUserCode({commit}, userCode) {
         commit(SET_USER_CODE, userCode);
     },
 };
