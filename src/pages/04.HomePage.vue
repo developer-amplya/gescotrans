@@ -12,7 +12,7 @@
 
         <f7-block>
             <f7-card outline>
-                <div @click="viewSchedule">
+                <div @click="viewTraffic">
                     <h1>
                         <f7-icon material="event_note" size="48px"></f7-icon>&nbsp;&nbsp;Tráfico
                     </h1>
@@ -20,7 +20,7 @@
             </f7-card>
 
             <f7-card outline>
-                <div @click="newAppointment">
+                <div @click="newLoadNote">
                     <h1>
                         <f7-icon material="library_add" size="48px"></f7-icon>&nbsp;&nbsp;Nota de Carga
                     </h1>
@@ -28,7 +28,7 @@
             </f7-card>
 
             <f7-card outline>
-                <div @click="newPatient">
+                <div @click="newCustomer">
                     <h1>
                         <f7-icon material="assignment_ind" size="48px"></f7-icon>&nbsp;&nbsp;Nuevo Cliente
                     </h1>
@@ -44,24 +44,20 @@
     export default {
         name: "HomePage",
         computed: {
-            ...mapGetters(["getDoctors", "getDoctor", 'getSpecialty'])
+            ...mapGetters([])
         },
         methods: {
-            selectDoctor() {
-                this.$f7router.navigate("/select-doctor");
+            viewTraffic()
+            {
+                //
             },
-            newAppointment() {
-                this.$f7router.navigate("/new-appointment");
+            newLoadNote()
+            {
+                //
             },
-            viewSchedule() {
-                if (this.getDoctor[0] === "") {
-                    this.$f7.dialog.alert("Debe seleccionar un/a facultativo/a.", "Atención");
-                } else {
-                    this.$f7router.navigate("/schedule");
-                }
-            },
-            newPatient() {
-                this.$f7router.navigate("/new-patient");
+            newCustomer()
+            {
+                //
             }
         }
     };
