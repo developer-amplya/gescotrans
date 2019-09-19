@@ -121,7 +121,8 @@
                             // Set state
                             this.$store.dispatch("setUserName", this.log_in.user);
                             this.$store.dispatch("setUserPass", this.log_in.password);
-                            this.$store.dispatch("setUserCode", response.data.user_code);
+                            this.$store.dispatch("setUserCode", response.data.codigo_usuario);
+                            this.$store.dispatch("setLoadStates", load_states);
 
                             // Navigate
                             this.$f7router.navigate("/home");
