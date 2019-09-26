@@ -67,16 +67,12 @@
         },
         methods: {
             scanDeliveryNote() {
-               scan.scanDoc(successCallback, errorCallback, {
-                    sourceType: 0,
-                    quality: 1.0,
-                    returnBase64: true
-                });
+
                 // sourceType will by default take value 1 if no value is set | 0 for gallery | 1 for camera.
                 // fileName will take default value "image" if no value set. Supported only on 4.x.x plugin version
                 // quality will take default value 1.0 (highest). Lowest value is 5.0. Any value in between will be accepted
                 // returnBase64 will take default boolean value false, meaning image URL is returned. If true base64 is returned
-                function successCallback(imageData) {
+                let successCallback = (imageData) => {
                     //alert(imageData);
                     //console.log(imageData);
                     //var image = this.$refs['scanned_image'];
@@ -86,9 +82,15 @@
                     this.button_text = 'Volver a escanear';
                 }
 
-                function errorCallback(message) {
+                let errorCallback = (message) => {
                     alert('Failed because: ' + message);
                 }
+
+                scan.scanDoc(successCallback, errorCallback, {
+                    sourceType: 0,
+                    quality: 1.0,
+                    returnBase64: true
+                });
             },
             send_delivery_note() {
                 //
