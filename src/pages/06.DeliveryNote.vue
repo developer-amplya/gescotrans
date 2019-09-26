@@ -89,7 +89,7 @@
                 }
 
                 scan.scanDoc(successCallback, errorCallback, {
-                    sourceType: 0,
+                    sourceType: 1,
                     quality: 1.0,
                     returnBase64: true
                 });
@@ -128,8 +128,19 @@
                         this.$f7.dialog.close();
 
                         if (response.data.res === 0) {
-
-                            this.$f7.dialog.alert("Enviado", "Éxito");
+                            //
+                            let notification = this.$f7.toast.create({
+                                position: 'top',
+                                text: "Guardado",
+                                cssClass: "success",
+                                icon: '<i class="icon material-icons">done</i>',
+                                closeTimeout: 2000
+                            });
+                            notification.open();
+                            //
+                            setTimeout(() => {
+                                this.$f7router.navigate("/view-traffic");
+                            }, 2000);
 
                         } else {
 
