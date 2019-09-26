@@ -59,4 +59,5 @@
 
     <plugin name="cordova-plugin-statusbar" />
     <plugin name="cordova-plugin-whitelist" />
+    <plugin name="cordova-plugin-document-scanner" />
 </widget>
