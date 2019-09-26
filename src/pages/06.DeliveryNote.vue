@@ -28,7 +28,7 @@
                 <f7-button outline large @click="scanDeliveryNote" sheet-close>Escanear</f7-button>
 
                 <div class="scanned-img">
-                    <img ref="scanned_image"></img>
+                    <img ref="scanned_image" :src="image_data"></img>
                 </div>
 
             </f7-block>
@@ -53,6 +53,7 @@
         data() {
             return {
                 delivery_note_number: null,
+                image_data: null,
             }
         },
         computed: {
