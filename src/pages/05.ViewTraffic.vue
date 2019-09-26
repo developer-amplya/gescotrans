@@ -20,7 +20,7 @@
                 <div class="timeline-item-date">{{ getSchedule[fecha][0] }}</div>
                 <div class="timeline-item-content">
                     <div class="timeline-item-inner" v-for="(value, key, index) in getSchedule[fecha][1]" :key="index">
-                        <div @click="openActionsSheet(value[0], value[3], value[4])">
+                        <div @click="openActionsSheet(value[0])">
                             <div class="timeline-item-time">{{ value[1] }}</div>
                             <div class="timeline-item-title">{{ value[2] }}</div>
                             <div class="timeline-item-subtitle">{{ value[3] }}</div>
@@ -61,8 +61,9 @@
         name: "ViewTraffic",
         data() {
             return {
-                lista_fechas: '',
-                state_code: '',
+                lista_fechas: [],
+                shipment_code: null,
+                state_code: null,
                 states_codes: [],
                 states_names: [],
             }
@@ -149,10 +150,8 @@
                         this.$f7.dialog.alert("No se ha podido conectar", "Error");
                     });
             },
-            openActionsSheet() {
-                /*this.appointmentCode = code;
-                this.patientName = patient;
-                this.patientPhone = phone;*/
+            openActionsSheet(code) {
+                this.shipment_code = code;
                 this.$refs.actions_sheet.open();
             },
             openChangeStateSheet() {
@@ -163,7 +162,7 @@
             },
             viewDeliveryNote()
             {
-                this.$f7router.navigate("/delivery-note");
+                this.$f7router.navigate("/delivery-note/" + this.shipment_code);
             },
             decodeEntities(encodedString) {
                 var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;

@@ -13,10 +13,29 @@
 
         <f7-page-content>
             <f7-block>
+
+                <f7-list form no-hairlines>
+                    <!-- ALBARÁN -->
+                    <f7-list-input
+                            type="text"
+                            label="Nº de albarán"
+                            :value="delivery_note_number"
+                            @input="delivery_note_number = $event.target.value"
+                    ></f7-list-input>
+
+                </f7-list>
+
                 <f7-button outline large @click="scanDeliveryNote" sheet-close>Escanear</f7-button>
+
+                <div id="scanned-image"></div>
+
             </f7-block>
         </f7-page-content>
 
+        <!-- SUBMIT -->
+        <f7-toolbar no-hairline position="bottom">
+            <f7-button large fill raised @click="send_delivery_note">Enviar</f7-button>
+        </f7-toolbar>
 
     </f7-page>
 </template>
@@ -28,9 +47,10 @@
 
     export default {
         name: "DeliveryNote",
+        props: ['shipment_code'],
         data() {
             return {
-                //
+                delivery_note_number: null,
             }
         },
         computed: {
@@ -43,9 +63,8 @@
             scanDeliveryNote() {
                 scan.scanDoc(successCallback, errorCallback, {
                     sourceType: 1,
-                    fileName: "myfilename",
                     quality: 1.0,
-                    returnBase64: false
+                    returnBase64: true
                 });
                 // sourceType will by default take value 1 if no value is set | 0 for gallery | 1 for camera.
                 // fileName will take default value "image" if no value set. Supported only on 4.x.x plugin version
@@ -54,22 +73,27 @@
                 function successCallback(imageData) {
                     alert(imageData);
                     console.log(imageData);
-                    //var image = document.getElementById('myImage');
+                    var image = document.getElementById('scanned-image');
                     //image.src = imageData; // Image URL rendering.
                     //image.src = imageData + '?' + Date.now(); // For iOS, use this to solve issue 10 if unique fileName is not set.
-                    //image.src = "data:image/jpeg;base64," + imageData; // Base64 rendering
+                    image.src = "data:image/jpeg;base64," + imageData; // Base64 rendering
                 }
 
                 function errorCallback(message) {
                     alert('Failed because: ' + message);
                 }
+            },
+            send_delivery_note() {
+                //
             }
         }
     };
 </script>
 
 <style scope>
-
+    #scanned-image img {
+        width: 100%;
+    }
 </style>
 
 

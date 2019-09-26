@@ -31,8 +31,9 @@ export default [
         component: ViewTraffic
     },
     {
-        path: '/delivery-note',
-        component: DeliveryNote
+        path: '/delivery-note/:shipment_code',
+        component: DeliveryNote,
+        props: true,
     },
     {
         path: '/reset-store',
