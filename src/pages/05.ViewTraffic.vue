@@ -37,7 +37,7 @@
                 <f7-block>
                     <f7-button outline large @click="open_states_picker" sheet-close>Cambiar estado</f7-button>
                     <br>
-                    <f7-button outline large sheet-close>Escanear nota de entrega</f7-button>
+                    <f7-button outline large @click="viewDeliveryNote" sheet-close>Escanear nota de entrega</f7-button>
                     <br>
                     <f7-button outline large sheet-close>Cancelar</f7-button>
                 </f7-block>
@@ -160,6 +160,10 @@
                 this.patientName = patient;
                 this.patientPhone = phone;*/
                 this.$refs.change_state_sheet.open();
+            },
+            viewDeliveryNote()
+            {
+                this.$f7router.navigate("/delivery-note");
             },
             decodeEntities(encodedString) {
                 var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
