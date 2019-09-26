@@ -127,13 +127,13 @@
                         // Preloader Off
                         this.$f7.dialog.close();
 
-                        if (response.data.usuario_valido === "ok") {
+                        if (response.data.res === 0) {
 
-                            //
+                            this.$f7.dialog.alert("Enviado", "Éxito");
 
                         } else {
 
-                            this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
+                            this.$f7.dialog.alert(response.data.error, "Error");
                         }
                     })
                     .catch(error => {
