@@ -27,7 +27,9 @@
 
                 <f7-button outline large @click="scanDeliveryNote" sheet-close>Escanear</f7-button>
 
-                <div id="scanned-image"></div>
+                <div class="scanned-img">
+                    <img ref="scanned_image"></img>
+                </div>
 
             </f7-block>
         </f7-page-content>
@@ -57,12 +59,13 @@
             ...mapGetters(["getUserName", "getUserPass", "getUserCode"])
         },
         mounted() {
-            //
+            var image = this.$refs['scanned-image'];
+            console.log(image)
         },
         methods: {
             scanDeliveryNote() {
                 scan.scanDoc(successCallback, errorCallback, {
-                    sourceType: 1,
+                    sourceType: 0,
                     quality: 1.0,
                     returnBase64: true
                 });
@@ -73,7 +76,7 @@
                 function successCallback(imageData) {
                     alert(imageData);
                     console.log(imageData);
-                    var image = document.getElementById('scanned-image');
+                    var image = this.$refs['scanned_image'];
                     //image.src = imageData; // Image URL rendering.
                     //image.src = imageData + '?' + Date.now(); // For iOS, use this to solve issue 10 if unique fileName is not set.
                     image.src = "data:image/jpeg;base64," + imageData; // Base64 rendering
@@ -91,8 +94,16 @@
 </script>
 
 <style scope>
-    #scanned-image img {
+    .scanned-img img {
         width: 100%;
+    }
+
+    .toolbar .button {
+        width: 100%;
+    }
+
+    .ios .toolbar {
+        height: 64px !important;
     }
 </style>
 
