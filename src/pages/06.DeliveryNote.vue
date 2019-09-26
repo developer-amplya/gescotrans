@@ -30,7 +30,7 @@
                 <br>
 
                 <div class="scanned-img">
-                    <img ref="scanned_image" :src="image_data"></img>
+                    <img ref="scanned_image" :src="image_data_src"></img>
                 </div>
 
             </f7-block>
@@ -56,6 +56,7 @@
             return {
                 delivery_note_number: null,
                 image_data: '',
+                image_data_src: '',
                 button_text: 'Escanear',
             }
         },
@@ -78,7 +79,8 @@
                     //var image = this.$refs['scanned_image'];
                     //image.src = imageData; // Image URL rendering.
                     //image.src = imageData + '?' + Date.now(); // For iOS, use this to solve issue 10 if unique fileName is not set.
-                    this.image_data = "data:image/jpeg;base64," + imageData; // Base64 rendering
+                    this.image_data_src = "data:image/jpeg;base64," + imageData; // Base64 rendering
+                    this.image_data = imageData;
                     this.button_text = 'Volver a escanear';
                 }
 
@@ -93,7 +95,53 @@
                 });
             },
             send_delivery_note() {
-                //
+
+                // Preloader On
+                this.$f7.dialog.preloader("Enviando...");
+
+                // Get schedule
+                let bodyFormData = new FormData();
+                bodyFormData.set("user", this.getUserName);
+                bodyFormData.set("pass", this.getUserPass);
+                bodyFormData.set("cod_chofer", this.getUserCode);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+                //--------------------------------------
+                bodyFormData.set("cod_nota", this.shipment_code);
+                bodyFormData.set("cod_albaran", this.delivery_note_number);
+                bodyFormData.set("bin_photo", this.image_data);
+
+                axios({
+                    method: "post",
+                    url: WS_PATH + "set_albaran.php",
+                    data: bodyFormData,
+                    timeout: 15000
+                })
+                    .then(response => {
+
+                        console.log(response);
+
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.usuario_valido === "ok") {
+
+                            //
+
+                        } else {
+
+                            this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
             }
         }
     };
