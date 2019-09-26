@@ -48,7 +48,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="Fullscreen" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#FF0A02" />
+    <preference name="StatusBarBackgroundColor" value="#107ED6" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="android-minSdkVersion" value="16" />
