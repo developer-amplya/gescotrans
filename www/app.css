@@ -19169,6 +19169,11 @@ iframe#viAd {
 }
 
 
+#scanned-image img {
+    width: 100%;
+}
+
+
 *[data-v-58d854bf] {
     color: #dedede !important;
 }
