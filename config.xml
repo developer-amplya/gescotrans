@@ -54,7 +54,7 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="android-targetSdkVersion"  value="26" />
 
-    <engine name="android" spec="^8.0.0" />
+    <engine name="android" spec="^9.0.0" />
     <engine name="ios" spec="^4.5.4" />
 
     <plugin name="cordova-plugin-statusbar" />
