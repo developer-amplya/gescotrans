@@ -34,19 +34,19 @@
   "homepage": "http://framework7.io/vue/",
   "dependencies": {
     "axios": "^0.18.1",
-    "framework7": "^4.5.0",
+    "framework7": "^4.5.2",
     "framework7-icons": "^2.3.1",
-    "framework7-vue": "^4.5.0",
+    "framework7-vue": "^4.5.2",
     "material-design-icons": "^3.0.1",
     "vue": "^2.6.10",
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.6.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "autoprefixer": "^9.6.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^8.0.6",
@@ -69,10 +69,10 @@
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.40.2",
-    "webpack-bundle-analyzer": "^3.5.0",
+    "webpack": "^4.41.0",
+    "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
+    "webpack-dev-server": "^3.8.2"
   },
   "engines": {
     "node": ">= 6.0.0",
