@@ -50,12 +50,12 @@
     <preference name="Fullscreen" value="false" />
     <preference name="StatusBarBackgroundColor" value="#107ED6" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name="android-minSdkVersion" value="16" />
-    <preference name="android-targetSdkVersion"  value="26" />
+    <preference name="android-targetSdkVersion"  value="28" />
 
     <engine name="android" spec="^9.0.0" />
-    <engine name="ios" spec="^4.5.4" />
+    <engine name="ios" spec="^5.0.1" />
 
     <plugin name="cordova-plugin-statusbar" />
     <plugin name="cordova-plugin-whitelist" />
