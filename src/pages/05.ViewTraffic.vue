@@ -102,6 +102,11 @@
                         closed: (statesPicker) => {
                             this.state_code = statesPicker.value[0];
                             this.change_state();
+
+                            if(this.state_code === 'FN')
+                            {
+                                this.$f7router.navigate("/delivery-note/" + this.shipment_code);
+                            }
                         }
                     }
                 });
