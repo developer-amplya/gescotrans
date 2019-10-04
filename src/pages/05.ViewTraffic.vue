@@ -20,7 +20,7 @@
                 <div class="timeline-item-date">{{ getSchedule[fecha][0] }}</div>
                 <div class="timeline-item-content">
                     <div class="timeline-item-inner" v-for="(value, key, index) in getSchedule[fecha][1]" :key="index">
-                        <div @click="openActionsSheet(value[0])">
+                        <div @click="openActionsSheet(value[0], value[5])">
                             <div class="timeline-item-time">{{ value[1] }}</div>
                             <div class="timeline-item-title">{{ value[2] }}</div>
                             <div class="timeline-item-subtitle">{{ value[3] }}</div>
@@ -90,13 +90,20 @@
                     momentumRatio: 14,
                     toolbar: true,
                     toolbarCloseText: "Hecho",
+                    value: [this.state_code],
                     cols: [
                         {
                             textAlign: 'center',
                             values: this.states_codes,
                             displayValues: this.states_names,
                         }
-                    ]
+                    ],
+                    on: {
+                        closed: (statesPicker) => {
+                            this.state_code = statesPicker.value[0];
+                            this.change_state();
+                        }
+                    }
                 });
                 statesPicker.open();
             },
@@ -150,19 +157,74 @@
                         this.$f7.dialog.alert("No se ha podido conectar", "Error");
                     });
             },
-            openActionsSheet(code) {
+            openActionsSheet(code, status) {
+                if(status === 'FN')
+                    return;
                 this.shipment_code = code;
+                this.state_code = status;
                 this.$refs.actions_sheet.open();
-            },
-            openChangeStateSheet() {
-                /*this.appointmentCode = code;
-                this.patientName = patient;
-                this.patientPhone = phone;*/
-                this.$refs.change_state_sheet.open();
             },
             viewDeliveryNote()
             {
                 this.$f7router.navigate("/delivery-note/" + this.shipment_code);
+            },
+            change_state() {
+                // Preloader On
+                this.$f7.dialog.preloader("Enviando...");
+
+                // Get schedule
+                let bodyFormData = new FormData();
+                bodyFormData.set("user", this.getUserName);
+                bodyFormData.set("pass", this.getUserPass);
+                bodyFormData.set("cod_chofer", this.getUserCode);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+                //--------------------------------------
+                bodyFormData.set("cod_nota", this.shipment_code);
+                bodyFormData.set("cod_estado", this.state_code);
+
+                axios({
+                    method: "post",
+                    url: WS_PATH + "set_estado.php",
+                    data: bodyFormData,
+                    timeout: 15000
+                })
+                    .then(response => {
+
+                        console.log(response);
+
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.res === 0) {
+                            //
+                            let notification = this.$f7.toast.create({
+                                position: 'top',
+                                text: "Guardado",
+                                cssClass: "success",
+                                icon: '<i class="icon material-icons">done</i>',
+                                closeTimeout: 2000
+                            });
+                            notification.open();
+                            //
+                            setTimeout(() => {
+                                this.retrieveData();
+                            }, 2000);
+
+                        } else {
+
+                            this.$f7.dialog.alert(response.data.error, "Error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
             },
             decodeEntities(encodedString) {
                 var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
