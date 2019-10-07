@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="es.amplya.aytransportes" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="es.amplya.aytransportes" version="0.0.15" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TransPortes</name>
     <description></description>
     <author email="ximo.espinosa@gmail.com" href="https://amplya.es">Amplya</author>
@@ -57,9 +57,9 @@
     <engine name="android" spec="^9.0.0" />
     <engine name="ios" spec="^5.0.1" />
 
-    <plugin name="cordova-plugin-statusbar" />
-    <plugin name="cordova-plugin-whitelist" />
-    <plugin name="cordova-plugin-document-scanner" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
+    <plugin name="cordova-plugin-document-scanner" spec="^4.2.1" />
 
     <edit-config file="*-Info.plist" mode="overwrite" target="NSCameraUsageDescription">
         <string>Se accede a la cámara con la finalidad de poder escanear las notas de entrega.</string>
