@@ -20,7 +20,7 @@
             </f7-card>
 
             <f7-card outline>
-                <div @click="newLoadNote">
+                <div @click="newCargoNote">
                     <h1>
                         <f7-icon material="library_add" size="48px"></f7-icon>&nbsp;&nbsp;Nota de Carga
                     </h1>
@@ -51,9 +51,9 @@
             {
                 this.$f7router.navigate("/view-traffic");
             },
-            newLoadNote()
+            newCargoNote()
             {
-                //
+                this.$f7router.navigate("/cargo-note");
             },
             newCustomer()
             {
