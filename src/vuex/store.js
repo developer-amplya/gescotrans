@@ -7,6 +7,12 @@ import {
     SET_USER_PASS,
     SET_USER_CODE, SET_LOAD_STATES,
     SET_SCHEDULE,
+    SET_CUSTOMERS_LIST,
+    SET_SERVICES_LIST,
+    SET_SUPPLIERS_LIST,
+    SET_CUSTOMER,
+    SET_SERVICE,
+    SET_SUPPLIER,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -17,6 +23,12 @@ const state = {
     user_code: '',
     load_states: {},
     schedule: {},
+    customers_list: null,
+    services_list: null,
+    suppliers_list: null,
+    customer: null,
+    service: null,
+    supplier: null,
 }
 
 const mutations = {
@@ -34,6 +46,24 @@ const mutations = {
     },
     [SET_SCHEDULE](state, data) {
         state.schedule = data;
+    },
+    [SET_CUSTOMERS_LIST](state, customersList) {
+        state.customers_list = customersList;
+    },
+    [SET_SERVICES_LIST](state, servicesList) {
+        state.services_list = servicesList;
+    },
+    [SET_SUPPLIERS_LIST](state, suppliersList) {
+        state.suppliers_list = suppliersList;
+    },
+    [SET_CUSTOMER](state, customer) {
+        state.customer = customer;
+    },
+    [SET_SERVICE](state, service) {
+        state.service = service;
+    },
+    [SET_SUPPLIER](state, supplier) {
+        state.supplier = supplier;
     },
 }
 
