@@ -23,14 +23,18 @@
                             @input="delivery_note_number = $event.target.value"
                     ></f7-list-input>
 
+                    <f7-list-item>
+                        <image-selector @image_selected="setImageData"></image-selector>
+                    </f7-list-item>
+
                 </f7-list>
 
-                <f7-button outline large @click="scanDeliveryNote" :text="button_text" sheet-close></f7-button>
+                <!--f7-button outline large @click="scanDeliveryNote" :text="button_text" sheet-close></f7-button-->
 
                 <br>
 
                 <div class="scanned-img">
-                    <img ref="scanned_image" :src="image_data_src"></img>
+                    <!--img ref="scanned_image" :src="image_data_src"></img-->
                 </div>
 
             </f7-block>
@@ -48,10 +52,14 @@
     import axios from "axios";
     import {WS_PATH} from "../config";
     import {mapGetters} from "vuex";
+    import ImageSelector from '../components/ImageSelector';
 
     export default {
         name: "DeliveryNote",
         props: ['shipment_code'],
+        components: {
+            'image-selector': ImageSelector,
+        },
         data() {
             return {
                 delivery_note_number: null,
@@ -67,7 +75,7 @@
             //
         },
         methods: {
-            scanDeliveryNote() {
+            /*scanDeliveryNote() {
 
                 // sourceType will by default take value 1 if no value is set | 0 for gallery | 1 for camera.
                 // fileName will take default value "image" if no value set. Supported only on 4.x.x plugin version
@@ -93,6 +101,10 @@
                     quality: 1.0,
                     returnBase64: true
                 });
+            },*/
+            setImageData(e) {
+                this.image_data = e;
+                this.image_data_src = "data:image/jpeg;base64," + e; // Base64 rendering
             },
             send_delivery_note() {
 
