@@ -170,7 +170,7 @@
     };
 </script>
 
-<style scope>
+<style scoped>
     .scanned-img img {
         width: 100%;
     }
