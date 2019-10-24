@@ -32,4 +32,7 @@ export default {
     getSupplier(state) {
         return (state.supplier);
     },
+    getCargoNoteDate(state) {
+        return (state.cargo_note_date);
+    },
 };

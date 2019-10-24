@@ -92,7 +92,7 @@
             },
             selectSupplier(code, name, phone) {
                 this.$store.dispatch("setSupplier", [code, name, phone]);
-                this.$f7router.navigate('/cargo-note');
+                this.$f7router.back();
             },
         },
     }

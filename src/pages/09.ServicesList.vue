@@ -92,7 +92,7 @@
             },
             selectService(code, name, phone) {
                 this.$store.dispatch("setService", [code, name, phone]);
-                this.$f7router.navigate('/cargo-note');
+                this.$f7router.back();
             },
         },
     }

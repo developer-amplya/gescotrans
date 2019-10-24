@@ -13,6 +13,7 @@ import {
     SET_CUSTOMER,
     SET_SERVICE,
     SET_SUPPLIER,
+    SET_CARGO_NOTE_DATE,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -50,6 +51,7 @@ const state = {
     customer: ['', 'Seleccionar...'],
     service: ['', 'Seleccionar...'],
     supplier: ['', 'Seleccionar...'],
+    cargo_note_date: null,
 }
 
 const mutations = {
@@ -85,6 +87,9 @@ const mutations = {
     },
     [SET_SUPPLIER](state, supplier) {
         state.supplier = supplier;
+    },
+    [SET_CARGO_NOTE_DATE](state, date) {
+        state.cargo_note_date = date;
     },
 }
 

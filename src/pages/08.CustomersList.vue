@@ -80,7 +80,8 @@
         },
         methods: {
             searchAll(query, items) {
-                //console.log(query)
+                console.log(query)
+                console.log(items)
                 const found = [];
                 for (let i = 0; i < items.length; i += 1) {
                     if (items[i][1].toLowerCase().indexOf(query.toLowerCase()) >= 0 || query.trim() === '') found.push(i);
@@ -92,7 +93,7 @@
             },
             selectPatient(code, name, phone) {
                 this.$store.dispatch("setCustomer", [code, name, phone]);
-                this.$f7router.navigate('/cargo-note');
+                this.$f7router.back();
             },
         },
     }

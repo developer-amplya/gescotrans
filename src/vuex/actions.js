@@ -11,6 +11,7 @@ import {
     SET_CUSTOMER,
     SET_SERVICE,
     SET_SUPPLIER,
+    SET_CARGO_NOTE_DATE,
 } from './mutations';
 
 export default {
@@ -46,5 +47,8 @@ export default {
     },
     setSupplier({commit}, supplier) {
         commit(SET_SUPPLIER, supplier);
+    },
+    setCargoNoteDate({commit}, cargo_note_date) {
+        commit(SET_CARGO_NOTE_DATE, cargo_note_date);
     },
 };
