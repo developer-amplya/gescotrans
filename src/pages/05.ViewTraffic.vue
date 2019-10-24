@@ -105,7 +105,10 @@
 
                             if(this.state_code === 'FN')
                             {
-                                this.$f7router.navigate("/delivery-note/" + this.shipment_code);
+                                // Wait 2 seconds and go
+                                setTimeout(() => {
+                                    this.$f7router.navigate("/delivery-note/" + this.shipment_code);
+                                }, 2000);
                             }
                         }
                     }
