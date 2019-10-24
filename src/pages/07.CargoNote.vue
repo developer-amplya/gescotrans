@@ -19,11 +19,11 @@
                         <h3>
                             <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Cliente
                         </h3>
-                        <p><strong>{{ getCustomer }}</strong>
+                        <p><strong>{{ getCustomer[1] }}</strong>
                         </p>
                         <p>
                             <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                            <small><em>{{ getCustomer }}</em></small>
+                            <small><em>{{ getCustomer[2] }}</em></small>
                         </p>
                     </div>
                 </f7-card>
@@ -33,12 +33,14 @@
                         <h3>
                             <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Servicio
                         </h3>
-                        <p><strong>{{ getService }}</strong>
+                        <p><strong>{{ getService[1] }}</strong>
                         </p>
+                        <!--
                         <p>
                             <f7-icon slot="media" material="phone" size="18px"></f7-icon>
                             <small><em>{{ getService }}</em></small>
                         </p>
+                        -->
                     </div>
                 </f7-card>
 
@@ -47,11 +49,11 @@
                         <h3>
                             <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Proveedor
                         </h3>
-                        <p><strong>{{ getSupplier }}</strong>
+                        <p><strong>{{ getSupplier[1] }}</strong>
                         </p>
                         <p>
                             <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                            <small><em>{{ getSupplier }}</em></small>
+                            <small><em>{{ getSupplier[2] }}</em></small>
                         </p>
                     </div>
                 </f7-card>
@@ -82,13 +84,16 @@
         },
         methods: {
 
-            selectCustomer() {
+            selectCustomer()
+            {
                 this.$f7router.navigate("/customers-list");
             },
-            selectService() {
+            selectService()
+            {
                 this.$f7router.navigate("/services-list");
             },
-            selectSupplier() {
+            selectSupplier()
+            {
                 this.$f7router.navigate("/suppliers-list");
             },
         }
