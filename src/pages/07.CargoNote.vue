@@ -27,9 +27,9 @@
                         <f7-col>
                             <div class="custom-input"
                                  @click="gotoCalendar">
+                                <div class="item-title item-label">Fecha</div>
                                 <f7-input
                                         type="text"
-                                        placeholder="Fecha"
                                         readonly
                                         :value="getCargoNoteDate"
                                 ></f7-input>
@@ -37,9 +37,13 @@
                         </f7-col>
                         <f7-col>
                             <div class="custom-input">
+                                <div class="item-title item-label">Hora</div>
                                 <f7-input
-                                        type="time"
+                                        type="text"
                                         :value="time"
+                                        readonly="readonly"
+                                        id="picker-time"
+                                        @change="time = $event.target.value"
                                 ></f7-input>
                             </div>
                         </f7-col>
@@ -94,11 +98,43 @@
         name: "CargoNote",
         data() {
             return {
-                time: '14:30',
+                hour: null,
+                minute: null,
+                time: '',
             };
         },
         computed: {
             ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate'])
+        },
+        mounted() {
+            var picker = this.$f7.picker.create({
+                inputEl: "#picker-time",
+                rotateEffect: true,
+                scrollToInput: true,
+                momentumRatio: 14,
+                toolbar: true,
+                toolbarCloseText: "Hecho",
+                formatValue: function (values, displayValues) {
+                    return values[0] + ":" + values[1];
+                },
+                cols: [
+                    {
+                        values: "00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23".split(" ")
+                    },
+                    {
+                        divider: true,
+                        content: ":"
+                    },
+                    {
+                        values: "00 05 10 15 20 25 30 35 40 45 50 55".split(" ")
+                    }
+                ],
+                on: {
+                    change: (picker) => {
+                        this.time = picker.value[0] + ':' + picker.value[1];
+                    }
+                }
+            });
         },
         methods: {
 
@@ -111,7 +147,7 @@
             selectSupplier() {
                 this.$f7router.navigate("/suppliers-list");
             },
-            gotoCalendar() {console.log('test')
+            gotoCalendar() {
                 this.$f7router.navigate("/calendar");
             },
             createNote() {
@@ -199,12 +235,24 @@
     }
 </script>
 
-<style scoped>
+<style>
     .custom-input {
-        background-color: #d9d9d9;
+        background-color: #dddddd;
         border: 1px solid #b9b9b9;
         border-radius: 5px;
         margin: 6px;
         padding: 4px;
+    }
+
+    .custom-input .input-with-value {
+        font-weight: bold !important;
+    }
+
+    .toolbar .button {
+        width: 100%;
+    }
+
+    .ios .toolbar {
+        height: 64px !important;
     }
 </style>
