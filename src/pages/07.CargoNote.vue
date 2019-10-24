@@ -237,7 +237,7 @@
 
 <style>
     .custom-input {
-        background-color: #dddddd;
+        background-color: #eeeeee;
         border: 1px solid #b9b9b9;
         border-radius: 5px;
         margin: 6px;

@@ -1,6 +1,6 @@
 <template>
 
-    <f7-block inner>
+    <f7-block inner class="add-image-btn">
 
         <!-- Image -->
         <!--
@@ -9,7 +9,13 @@
         </div>
         -->
 
-        <f7-button outline large @click="$refs.GetImageActionSheet.open()" text="AÑADIR IMAGEN" sheet-close></f7-button>
+        <f7-button
+                outline
+                large
+                @click="$refs.GetImageActionSheet.open()"
+                text="AÑADIR IMAGEN"
+                sheet-close
+        ></f7-button>
 
         <!-- Popover -->
         <f7-actions ref="GetImageActionSheet">
@@ -81,6 +87,9 @@
 <style scoped>
 
     .image img {
+        width: 100%;
+    }
+    .add-image-btn.block {
         width: 100%;
     }
 
