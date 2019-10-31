@@ -11,34 +11,32 @@
             </f7-nav-right>
         </f7-navbar>
 
-        <f7-page-content>
-            <f7-block>
+        <f7-block>
 
-                <f7-list form no-hairlines>
-                    <!-- ALBARÁN -->
-                    <f7-list-input
-                            type="text"
-                            label="Nº de albarán"
-                            :value="delivery_note_number"
-                            @input="delivery_note_number = $event.target.value"
-                    ></f7-list-input>
+            <f7-list form no-hairlines>
+                <!-- ALBARÁN -->
+                <f7-list-input
+                        type="text"
+                        label="Nº de albarán"
+                        :value="delivery_note_number"
+                        @input="delivery_note_number = $event.target.value"
+                ></f7-list-input>
 
-                    <f7-list-item v-if="image_data_source !== null">
-                        <div class="scanned-img">
-                            <img ref="scanned_image" :src="image_data_src"></img>
-                        </div>
-                    </f7-list-item>
+                <f7-list-item v-if="image_data_source !== null">
+                    <div class="scanned-img">
+                        <img ref="scanned_image" :src="image_data_src"></img>
+                    </div>
+                </f7-list-item>
 
-                    <f7-list-item>
-                        <image-selector @image_selected="setImageData"></image-selector>
-                    </f7-list-item>
+                <f7-list-item>
+                    <image-selector @image_selected="setImageData"></image-selector>
+                </f7-list-item>
 
-                </f7-list>
+            </f7-list>
 
-                <!--f7-button outline large @click="scanDeliveryNote" :text="button_text" sheet-close></f7-button-->
+            <!--f7-button outline large @click="scanDeliveryNote" :text="button_text" sheet-close></f7-button-->
 
-            </f7-block>
-        </f7-page-content>
+        </f7-block>
 
         <!-- SUBMIT -->
         <f7-toolbar no-hairline position="bottom">

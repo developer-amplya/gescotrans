@@ -11,75 +11,73 @@
             </f7-nav-right>
         </f7-navbar>
 
-        <f7-page-content>
-            <f7-block>
+        <f7-block>
 
-                <f7-card outline>
-                    <div @click="selectService">
-                        <h3>
-                            <f7-icon material="assignment" size="28px"></f7-icon>&nbsp;&nbsp;Servicio
-                        </h3>
-                        <p><strong>{{ getService[1] }}</strong>
-                        </p>
-                    </div>
+            <f7-card outline>
+                <div @click="selectService">
+                    <h3>
+                        <f7-icon material="assignment" size="28px"></f7-icon>&nbsp;&nbsp;Servicio
+                    </h3>
+                    <p><strong>{{ getService[1] }}</strong>
+                    </p>
+                </div>
 
-                    <f7-row>
-                        <f7-col>
-                            <div class="custom-input"
-                                 @click="gotoCalendar">
-                                <div class="item-title item-label">Fecha</div>
-                                <f7-input
-                                        type="text"
-                                        readonly
-                                        :value="getCargoNoteDate"
-                                ></f7-input>
-                            </div>
-                        </f7-col>
-                        <f7-col>
-                            <div class="custom-input">
-                                <div class="item-title item-label">Hora</div>
-                                <f7-input
-                                        type="text"
-                                        :value="time"
-                                        readonly="readonly"
-                                        id="picker-time"
-                                        @change="time = $event.target.value"
-                                ></f7-input>
-                            </div>
-                        </f7-col>
-                    </f7-row>
-                </f7-card>
+                <f7-row>
+                    <f7-col>
+                        <div class="custom-input"
+                             @click="gotoCalendar">
+                            <div class="item-title item-label">Fecha</div>
+                            <f7-input
+                                    type="text"
+                                    readonly
+                                    :value="getCargoNoteDate"
+                            ></f7-input>
+                        </div>
+                    </f7-col>
+                    <f7-col>
+                        <div class="custom-input">
+                            <div class="item-title item-label">Hora</div>
+                            <f7-input
+                                    type="text"
+                                    :value="time"
+                                    readonly="readonly"
+                                    id="picker-time"
+                                    @change="time = $event.target.value"
+                            ></f7-input>
+                        </div>
+                    </f7-col>
+                </f7-row>
+            </f7-card>
 
-                <f7-card outline>
-                    <div @click="selectCustomer">
-                        <h3>
-                            <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Cliente
-                        </h3>
-                        <p><strong>{{ getCustomer[1] }}</strong>
-                        </p>
-                        <p>
-                            <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                            <small><em>{{ getCustomer[2] }}</em></small>
-                        </p>
-                    </div>
-                </f7-card>
+            <f7-card outline>
+                <div @click="selectCustomer">
+                    <h3>
+                        <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Cliente
+                    </h3>
+                    <p><strong>{{ getCustomer[1] }}</strong>
+                    </p>
+                    <p>
+                        <f7-icon slot="media" material="phone" size="18px"></f7-icon>
+                        <small><em>{{ getCustomer[2] }}</em></small>
+                    </p>
+                </div>
+            </f7-card>
 
-                <f7-card outline>
-                    <div @click="selectSupplier">
-                        <h3>
-                            <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Proveedor
-                        </h3>
-                        <p><strong>{{ getSupplier[1] }}</strong>
-                        </p>
-                        <p>
-                            <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                            <small><em>{{ getSupplier[2] }}</em></small>
-                        </p>
-                    </div>
-                </f7-card>
+            <f7-card outline>
+                <div @click="selectSupplier">
+                    <h3>
+                        <f7-icon material="assignment_ind" size="28px"></f7-icon>&nbsp;&nbsp;Proveedor
+                    </h3>
+                    <p><strong>{{ getSupplier[1] }}</strong>
+                    </p>
+                    <p>
+                        <f7-icon slot="media" material="phone" size="18px"></f7-icon>
+                        <small><em>{{ getSupplier[2] }}</em></small>
+                    </p>
+                </div>
+            </f7-card>
 
-            </f7-block>
-        </f7-page-content>
+        </f7-block>
 
         <!-- Submit -->
         <f7-toolbar no-hairline position="bottom">
