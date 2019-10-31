@@ -13,7 +13,7 @@
                 outline
                 large
                 @click="$refs.GetImageActionSheet.open()"
-                text="AÑADIR IMAGEN"
+                :text="button_text"
                 sheet-close
         ></f7-button>
 
@@ -36,7 +36,7 @@
         name: 'ImageSelector',
         data() {
             return {
-                //
+                button_text: 'AÑADIR IMAGEN'
             };
         },
         methods: {
@@ -76,6 +76,8 @@
             },
             showPicture(imageData) {
                 // this.$refs.currentImage.src = imageURI;
+
+                this.button_text = 'REEMPLAZAR IMAGEN';
 
                 // Emit URI to parent
                 this.$emit('image_selected', imageData);
