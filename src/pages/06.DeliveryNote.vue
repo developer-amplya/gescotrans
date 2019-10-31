@@ -34,7 +34,7 @@
                 <br>
 
                 <div class="scanned-img">
-                    <!--img ref="scanned_image" :src="image_data_src"></img-->
+                    <img ref="scanned_image" :src="image_data_src"></img>
                 </div>
 
             </f7-block>
@@ -65,7 +65,7 @@
                 delivery_note_number: null,
                 image_data: '',
                 image_data_src: '',
-                button_text: 'Escanear',
+                //button_text: 'Escanear',
             }
         },
         computed: {
@@ -107,6 +107,13 @@
                 this.image_data_src = "data:image/jpeg;base64," + e; // Base64 rendering
             },
             send_delivery_note() {
+
+                // Check the existence of a delivery note number
+                if (this.delivery_note_number === null) {
+
+                    this.$f7.dialog.alert("Debe introducir un número de albarán", "Atención");
+                    return;
+                }
 
                 // Preloader On
                 this.$f7.dialog.preloader("Enviando...");
