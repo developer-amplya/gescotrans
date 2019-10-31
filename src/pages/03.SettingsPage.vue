@@ -63,8 +63,8 @@
                     <f7-icon material="info"></f7-icon>
                     <h3>Credenciales de prueba</h3>
                 </div>
-                <p><strong>Usuario:</strong> demo_clinicas</p>
-                <p><strong>Contraseña:</strong> 0000</p>
+                <p><strong>Usuario:</strong> prueba</p>
+                <p><strong>Contraseña:</strong> 123</p>
             </div>
         </f7-block>
 
