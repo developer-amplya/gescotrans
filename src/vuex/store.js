@@ -24,30 +24,9 @@ const state = {
     user_code: '',
     load_states: {},
     schedule: {},
-    customers_list: [
-        ['000', 'A', ''],
-        ['456', 'Antonio Orozco', '666 555 444'],
-        ['254', 'Andrea Valles', '666 777 888'],
-        ['000', 'B', ''],
-        ['965', 'Bartolome de las Chozas', '666 555 444'],
-        ['853', 'Begoña Valles', '666 777 888']
-    ],
-    services_list: [
-        ['000', 'A', ''],
-        ['456', 'Antonio Orozco', '666 555 444'],
-        ['254', 'Andrea Valles', '666 777 888'],
-        ['000', 'B', ''],
-        ['965', 'Bartolome de las Chozas', '666 555 444'],
-        ['853', 'Begoña Valles', '666 777 888']
-    ],
-    suppliers_list:[
-        ['000', 'A', ''],
-        ['456', 'Antonio Orozco', '666 555 444'],
-        ['254', 'Andrea Valles', '666 777 888'],
-        ['000', 'B', ''],
-        ['965', 'Bartolome de las Chozas', '666 555 444'],
-        ['853', 'Begoña Valles', '666 777 888']
-    ],
+    customers_list: [],
+    services_list: [],
+    suppliers_list:[],
     customer: ['', 'Seleccionar...'],
     service: ['', 'Seleccionar...'],
     supplier: ['', 'Seleccionar...'],
@@ -101,58 +80,28 @@ export default new Vuex.Store({
 });
 
 /*
-        '001': [
-            'Pediatría', [
-                ['01', 'Ana Torroja'],
-                ['02', 'Jose Feliciano']
-            ]
-        ],
-        '002': [
-            'Geriatría', [
-                ['03', 'Terelu Campos'],
-                ['04', 'Javi Pecos']
-            ]
-        ]
-    */
-
-/*
-    '01': [
-        'Pediatría', [
-            ['01', 'Primera consulta', '30 min'],
-            ['02', 'Revisión', '30 min']
-        ]
+        customers_list: [
+        ['000', 'A', ''],
+        ['456', 'Antonio Orozco', '666 555 444'],
+        ['254', 'Andrea Valles', '666 777 888'],
+        ['000', 'B', ''],
+        ['965', 'Bartolome de las Chozas', '666 555 444'],
+        ['853', 'Begoña Valles', '666 777 888']
     ],
-    '02': [
-        'Cirugía', [
-            ['03', 'Quirófano', '30 min'],
-            ['04', 'Retirada de puntos', '30 min']
-        ]
-    ]
-*/
-
-/*
-    "2019-04-12": [
-        "12 ABR 19", [
-            ["11:00-11:30", "1ª consulta"],
-            ["15:30-16:30", "Revisión"]
-        ]
+    services_list: [
+        ['000', 'A', ''],
+        ['456', 'Antonio Orozco', '666 555 444'],
+        ['254', 'Andrea Valles', '666 777 888'],
+        ['000', 'B', ''],
+        ['965', 'Bartolome de las Chozas', '666 555 444'],
+        ['853', 'Begoña Valles', '666 777 888']
     ],
-    "2019-04-13": [
-        "13 ABR 19", [
-            ["09:00-09:30", "1ª consulta"],
-            ["12:30-13:30", "Revisión"]
-        ]
+    suppliers_list:[
+        ['000', 'A', ''],
+        ['456', 'Antonio Orozco', '666 555 444'],
+        ['254', 'Andrea Valles', '666 777 888'],
+        ['000', 'B', ''],
+        ['965', 'Bartolome de las Chozas', '666 555 444'],
+        ['853', 'Begoña Valles', '666 777 888']
     ],
-    "2019-04-14": [
-        "14 ABR 19", [
-            ["11:00-11:30", "1ª consulta"],
-            ["15:30-16:30", "Quirófano"]
-        ]
-    ],
-    "2019-04-15": [
-        "15 ABR 19", [
-            ["09:00-09:30", "Revisión"],
-            ["12:30-13:30", "Revisión"]
-        ]
-    ]
 */

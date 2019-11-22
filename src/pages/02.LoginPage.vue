@@ -49,8 +49,8 @@
         data() {
             return {
                 log_in: {
-                    user: "",
-                    password: ""
+                    user: "prueba",
+                    password: "1234"
                 }
             };
         },
@@ -108,7 +108,7 @@
                 })
                     .then(response => {
 
-                        console.log(response);
+                        // console.log(response);
 
                         // Preloader Off
                         this.$f7.dialog.close();
@@ -124,10 +124,70 @@
                             this.$store.dispatch("setUserCode", response.data.codigo_usuario);
                             this.$store.dispatch("setLoadStates", load_states);
 
+                            // Retrieve master data
+                            this.fetchMasterData(); //TODO: Si falla la carga de datos, ¿se debe permitir el acceso?
+
                             // Navigate
                             this.$f7router.navigate("/home");
                         } else {
-                            this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                            this.$f7.dialog.alert("No se ha podido conectar. Usuario no válido.", "Error");
+                        }
+                    })
+                    .catch(error => {
+                        //console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
+            },
+            fetchMasterData() {
+                // Preloader On
+                this.$f7.dialog.preloader("Cargando...");
+
+                let bodyFormData = new FormData();
+                bodyFormData.set("user", this.log_in.user);
+                bodyFormData.set("pass", this.log_in.password);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+
+                axios({
+                    method: "post",
+                    url: WS_PATH + "get_datos_maestros.php",
+                    data: bodyFormData,
+                    timeout: 15000
+                })
+                    .then(response => {
+
+                        console.log(response);
+
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.res === 0) {
+
+                            // Customers
+                            let customers = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.clientes))
+                            );
+                            this.$store.dispatch('setCustomersList', customers);
+
+                            // Suppliers
+                            let suppliers = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.proveedores))
+                            );
+                            this.$store.dispatch('setSuppliersList', suppliers);
+
+                            // Services
+                            let services = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.servicios))
+                            );
+                            this.$store.dispatch('setServicesList', services);
+
+                        } else {
+                            this.$f7.dialog.alert("No se han podido recuperar los datos", "Error");
                         }
                     })
                     .catch(error => {
