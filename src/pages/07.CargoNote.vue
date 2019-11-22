@@ -47,6 +47,18 @@
                         </div>
                     </f7-col>
                 </f7-row>
+
+                <f7-row>
+                    <div class="custom-input" style="width: 100%">
+                        <div class="item-title item-label">Observaciones</div>
+                        <f7-input
+                                type="textarea"
+                                :value="comments"
+                                @input="comments = $event.target.value"
+                                resizable
+                        ></f7-input>
+                    </div>
+                </f7-row>
             </f7-card>
 
             <f7-card outline>
@@ -99,6 +111,7 @@
                 hour: null,
                 minute: null,
                 time: '',
+                comments: '',
             };
         },
         computed: {
@@ -180,6 +193,7 @@
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
+                bodyFormData.set("txt_observaciones", this.comments);
 
                 axios({
                     method: "post",
