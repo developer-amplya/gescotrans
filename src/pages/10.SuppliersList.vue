@@ -25,7 +25,7 @@
             <f7-list-item title="No se encontró nada"></f7-list-item>
         </f7-list>
 
-        <!-- Contacts list -->
+        <!-- Suppliers list -->
         <f7-list
                 class="searchbar-found"
                 media-list
@@ -35,7 +35,7 @@
                 <li v-for="(contact, index) in vlData.items"
                     :key="index"
                     :style="`top: ${vlData.topPosition}px`">
-                    <div class="item-content item-divider" v-if="contact[0] === '000'">
+                    <div class="item-content item-divider" v-if="contact[0] === '-1'">
                         <div class="item-inner">
                             {{contact[1]}}
                         </div>
