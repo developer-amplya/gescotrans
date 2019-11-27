@@ -64,7 +64,7 @@
                     <h3>Credenciales de prueba</h3>
                 </div>
                 <p><strong>Usuario:</strong> prueba</p>
-                <p><strong>Contraseña:</strong> 123</p>
+                <p><strong>Contraseña:</strong> 1234</p>
             </div>
         </f7-block>
 
