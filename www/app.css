@@ -19241,6 +19241,9 @@ iframe#viAd {
     font-weight: bold;
     color: #0C3D87 !important;
 }
+.item-title span[data-v-eb70c6a6] {
+    opacity: 60%;
+}
 
 
 .virtual-list[data-v-4ddf953a] {

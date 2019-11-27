@@ -49,8 +49,8 @@
         data() {
             return {
                 log_in: {
-                    user: "prueba",
-                    password: "1234"
+                    user: "",
+                    password: ""
                 }
             };
         },

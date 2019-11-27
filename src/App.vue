@@ -27,8 +27,8 @@
             return {
                 // Framework7 parameters here
                 f7params: {
-                    id: 'es.amplya.ayclinicas', // App bundle ID
-                    name: 'Cita Previa', // App name
+                    id: 'es.amplya.aytransportes', // App bundle ID
+                    name: 'TransPortes', // App name
                     theme: 'auto', // Automatic theme detection
                     // App routes
                     routes: routes,
