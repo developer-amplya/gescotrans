@@ -45,7 +45,7 @@
         </f7-sheet>
 
         <!-- Floating Action Button -->
-        <f7-fab position="right-bottom" slot="fixed" color="blue" href="/new-entry">
+        <f7-fab position="right-bottom" slot="fixed" color="blue" href="/cargo-note">
             <f7-icon ios="f7:add" md="material:add"></f7-icon>
         </f7-fab>
 
