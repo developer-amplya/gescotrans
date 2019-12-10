@@ -59,6 +59,7 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
     <plugin name="cordova-plugin-camera" spec="^4.0.0" />
+    <plugin name="cordova-plugin-document-scanner" spec="^3.0.0" />
 
     <edit-config file="*-Info.plist" mode="overwrite" target="NSCameraUsageDescription">
         <string>Se accede a la cámara con la finalidad de poder escanear las notas de entrega.</string>
