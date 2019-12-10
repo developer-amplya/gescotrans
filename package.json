@@ -34,6 +34,9 @@
   "homepage": "http://framework7.io/vue/",
   "dependencies": {
     "axios": "^0.18.1",
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-add-swift-support": "2.0.2",
+    "cordova-plugin-cocoapod-support": "1.6.2",
     "cordova-plugin-document-scanner": "3.1.0",
     "framework7": "^4.5.2",
     "framework7-icons": "^2.3.1",
@@ -86,7 +89,9 @@
   ],
   "cordova": {
     "plugins": {
-      "cordova-plugin-document-scanner": {}
+      "cordova-plugin-document-scanner": {},
+      "cordova-plugin-add-swift-support": {},
+      "cordova-plugin-cocoapod-support": {}
     }
   }
 }
