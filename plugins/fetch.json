@@ -1,0 +1,10 @@
+{
+  "cordova-plugin-document-scanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-document-scanner@^3.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

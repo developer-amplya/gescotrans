@@ -1,0 +1,66 @@
+{
+  "_from": "cordova-plugin-document-scanner@^3.0.0",
+  "_id": "cordova-plugin-document-scanner@3.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-nNnejl1kUQRDOiqkFmH3ohQUhXHqhsIcFN6EGdPqi95/oMEsaU6L3wNlGhFHkOortWsaW8cEPMjnNhDOxrl7WA==",
+  "_location": "/cordova-plugin-document-scanner",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-document-scanner@^3.0.0",
+    "name": "cordova-plugin-document-scanner",
+    "escapedName": "cordova-plugin-document-scanner",
+    "rawSpec": "^3.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^3.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-document-scanner/-/cordova-plugin-document-scanner-3.1.0.tgz",
+  "_shasum": "b53ec64aee828a0e528540f3096e0d068d05c88a",
+  "_spec": "cordova-plugin-document-scanner@^3.0.0",
+  "_where": "C:\\Users\\Francisco\\Google Drive\\PROYECTOS APP\\GESCOTRANS\\files\\gescotrans",
+  "author": {
+    "name": "jatahworx"
+  },
+  "bugs": {
+    "url": "https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-document-scanner",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "cordova plugin for document scanner",
+  "engines": {
+    "cordovaDependencies": {
+      "cordova-android": ">=6.4.0",
+      "cordova-ios": ">=4.5.4"
+    }
+  },
+  "homepage": "https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner#readme",
+  "keywords": [
+    "cordova",
+    "camera",
+    "document",
+    "scan",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "document scanner"
+  ],
+  "license": "ISC",
+  "name": "cordova-plugin-document-scanner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeutrinosPlatform/cordova-plugin-document-scanner.git"
+  },
+  "version": "3.1.0"
+}
