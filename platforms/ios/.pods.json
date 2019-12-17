@@ -1,0 +1,11 @@
+{
+	"pods": {
+		"WeScan": {
+			"type": "pod",
+			"name": "WeScan"
+		}
+	},
+	"sources": {},
+	"iosMinVersion": "10.0",
+	"useFrameworks": true
+}
