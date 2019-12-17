@@ -19,6 +19,7 @@
 <script>
     // Import Routes
     import routes from './routes.js'
+    // Import store
     import store from './vuex/store'
 
     export default {
@@ -52,6 +53,11 @@
                     },
                 },
             }
+        },
+        mounted() {
+            document.addEventListener('backbutton', () => {
+                this.$f7.views.main.router.back()
+            }, false);
         }
     }
 </script>
