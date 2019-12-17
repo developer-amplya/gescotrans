@@ -20,7 +20,7 @@
 
             <!-- Version -->
             <div class="version">
-                <small>v.0.0.28</small>
+                <small>v.0.0.29</small>
             </div>
         </f7-toolbar>
     </f7-page>
