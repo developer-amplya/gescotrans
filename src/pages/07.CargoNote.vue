@@ -228,7 +228,7 @@
 
                             // Wait 2 seconds and go home
                             setTimeout(() => {
-                                this.$f7router.navigate("/home");
+                                this.$f7router.back();
                             }, 2000);
 
                         } else {
