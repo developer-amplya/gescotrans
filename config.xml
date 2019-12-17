@@ -61,7 +61,9 @@
     <edit-config file="*-Info.plist" mode="overwrite" target="NSPhotoLibraryUsageDescription">
         <string>Se accede a la Librería de Imágenes con la finalidad de seleccionar imágenes de las notas de entrega.</string>
     </edit-config>
+    <!--
     <plugin name="cordova-plugin-document-scanner" spec="3.1.0" />
     <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
     <plugin name="cordova-plugin-cocoapod-support" spec="1.6.2" />
+    -->
 </widget>
