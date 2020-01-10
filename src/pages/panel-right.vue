@@ -10,6 +10,13 @@
                 <f7-list-item link="/reset-store" title="Salir" view="#main-view" panel-close></f7-list-item>
             </f7-list>
         </f7-block>
+
+        <f7-toolbar position="bottom" no-shadow no-hairline>
+            <!-- Version -->
+            <div class="version">
+                <small>v. 1.0.134</small>
+            </div>
+        </f7-toolbar>
     </f7-page>
 </template>
 
@@ -20,5 +27,14 @@
 <style scoped>
     * {
         color: #dedede !important;
+    }
+    .toolbar {
+        background-color: transparent !important;
+    }
+    .version {
+        position: absolute;
+        padding-top: 6px;
+        right: 10px;
+        color: rgba(255, 255, 255, 0.75);
     }
 </style>
