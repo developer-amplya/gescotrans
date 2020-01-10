@@ -53,7 +53,7 @@
                     });
                 } else {
                     // If the navigator.camera is not available display generic error to the user.
-                    this.$f7.dialog.alert('Cámara no disponible', 'Atención');
+                    this.$f7.dialog.alert('Cámara no disponible.', 'Atención');
                 }
             },
             // From library
@@ -69,7 +69,7 @@
                     });
                 } else {
                     // If the navigator.camera is not available display generic error to the user.
-                    this.$f7.dialog.alert('Galería no disponible', 'Atención');
+                    this.$f7.dialog.alert('Galería no disponible.', 'Atención');
                 }
             },
             showPicture(imageData) {
