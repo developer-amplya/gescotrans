@@ -3,6 +3,7 @@ import {
     SET_USER_NAME,
     SET_USER_PASS,
     SET_USER_CODE,
+    SET_USER_ROLE,
     SET_LOAD_STATES,
     SET_SCHEDULE,
     SET_CUSTOMERS_LIST,
@@ -23,6 +24,9 @@ export default {
     },
     setUserCode({commit}, userCode) {
         commit(SET_USER_CODE, userCode);
+    },
+    setUserRole({commit}, userRole) {
+        commit(SET_USER_ROLE, userRole);
     },
     setLoadStates({commit}, loadStates) {
         commit(SET_LOAD_STATES, loadStates);

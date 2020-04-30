@@ -2,6 +2,7 @@
 export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_USER_PASS = 'SET_USER_PASS';
 export const SET_USER_CODE = 'SET_USER_CODE';
+export const SET_USER_ROLE = 'SET_USER_ROLE';
 export const SET_LOAD_STATES = 'SET_LOAD_STATES';
 export const SET_SCHEDULE = 'SET_SCHEDULE';
 export const SET_CUSTOMERS_LIST = 'SET_CUSTOMERS_LIST';

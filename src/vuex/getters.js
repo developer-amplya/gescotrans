@@ -8,6 +8,9 @@ export default {
     getUserCode(state) {
         return (state.user_code);
     },
+    getUserRole(state) {
+        return (state.user_role);
+    },
     getLoadStates(state) {
         return (state.load_states);
     },

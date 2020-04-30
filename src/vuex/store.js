@@ -5,7 +5,9 @@ import actions from './actions';
 import {
     SET_USER_NAME,
     SET_USER_PASS,
-    SET_USER_CODE, SET_LOAD_STATES,
+    SET_USER_CODE,
+    SET_USER_ROLE,
+    SET_LOAD_STATES,
     SET_SCHEDULE,
     SET_CUSTOMERS_LIST,
     SET_SERVICES_LIST,
@@ -22,6 +24,7 @@ const state = {
     user: '',
     password: '',
     user_code: '',
+    user_role: '',
     load_states: {},
     schedule: {},
     customers_list: [],
@@ -42,6 +45,9 @@ const mutations = {
     },
     [SET_USER_CODE](state, userCode) {
         state.user_code = userCode;
+    },
+    [SET_USER_ROLE](state, userRole) {
+        state.user_role = userRole;
     },
     [SET_LOAD_STATES](state, loadStates) {
         state.load_states = loadStates;
