@@ -3,7 +3,7 @@
 
         <f7-block>
             <div class="logo">
-                <img src="../assets/front.png">
+                <img src="../assets/logo.png">
             </div>
         </f7-block>
 
