@@ -43,6 +43,7 @@
 <script>
     import axios from "axios";
     import {WS_PATH} from "../config";
+    import {mapGetters} from "vuex";
 
     export default {
         name: "LoginPage",
@@ -53,6 +54,9 @@
                     password: ""
                 }
             };
+        },
+        computed: {
+            ...mapGetters(['getUserRole'])
         },
         mounted() {
 
@@ -122,13 +126,24 @@
                             this.$store.dispatch("setUserName", this.log_in.user);
                             this.$store.dispatch("setUserPass", this.log_in.password);
                             this.$store.dispatch("setUserCode", response.data.codigo_usuario);
+                            this.$store.dispatch("setUserRole", response.data.rol_usuario);
                             this.$store.dispatch("setLoadStates", load_states);
+
+                            // Temporalmente!!!
+                            if(this.log_in.user === 'javi')
+                                this.$store.dispatch("setUserRole", 'admin');
+                            else
+                                this.$store.dispatch("setUserRole", 'driver');
 
                             // Retrieve master data
                             this.fetchMasterData(); //TODO: Si falla la carga de datos, ¿se debe permitir el acceso?
 
                             // Navigate
-                            this.$f7router.navigate("/home");
+                            if(this.getUserRole === 'admin')
+                                this.$f7router.navigate("/home-admin", {clearPreviousHistory: true});
+                            else
+                                this.$f7router.navigate("/license-plate");
+
                         } else {
                             this.$f7.dialog.alert("No se ha podido conectar. Usuario no válido.", "Error");
                         }

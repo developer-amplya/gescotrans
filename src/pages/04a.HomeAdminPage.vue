@@ -42,7 +42,7 @@
     import {mapGetters} from "vuex";
 
     export default {
-        name: "HomePage",
+        name: "HomeAdminPage",
         computed: {
             ...mapGetters([])
         },

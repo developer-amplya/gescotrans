@@ -12,3 +12,4 @@ export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_SERVICE = 'SET_SERVICE';
 export const SET_SUPPLIER = 'SET_SUPPLIER';
 export const SET_CARGO_NOTE_DATE = 'c';
+export const SET_LICENSE_PLATE = '';

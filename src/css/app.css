@@ -72,5 +72,31 @@
 }
 
 .center {
+    margin: auto;
     text-align: center;
+}
+
+.center .img-100 {
+    width: 100%;
+}
+
+/* Sticky footer **************************************************************************************************** */
+
+footer {
+    flex-shrink: 0;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content > div {
+    flex: 1 0 auto;
+}
+
+/* iOS styles ******************************************************************************************************* */
+
+.ios .page {
+    background-color: #ffffff;
 }

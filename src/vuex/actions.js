@@ -13,6 +13,7 @@ import {
     SET_SERVICE,
     SET_SUPPLIER,
     SET_CARGO_NOTE_DATE,
+    SET_LICENSE_PLATE,
 } from './mutations';
 
 export default {
@@ -54,5 +55,8 @@ export default {
     },
     setCargoNoteDate({commit}, cargo_note_date) {
         commit(SET_CARGO_NOTE_DATE, cargo_note_date);
+    },
+    setLicensePlate({commit}, license_plate) {
+        commit(SET_LICENSE_PLATE, license_plate);
     },
 };

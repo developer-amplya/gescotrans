@@ -16,6 +16,7 @@ import {
     SET_SERVICE,
     SET_SUPPLIER,
     SET_CARGO_NOTE_DATE,
+    SET_LICENSE_PLATE,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -34,6 +35,7 @@ const state = {
     service: ['', 'Seleccionar...'],
     supplier: ['', 'Seleccionar...'],
     cargo_note_date: null,
+    license_plate: '',
 }
 
 const mutations = {
@@ -75,6 +77,9 @@ const mutations = {
     },
     [SET_CARGO_NOTE_DATE](state, date) {
         state.cargo_note_date = date;
+    },
+    [SET_LICENSE_PLATE](state, license_plate) {
+        state.license_plate = license_plate;
     },
 }
 
