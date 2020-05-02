@@ -5,16 +5,19 @@
         </f7-navbar>
 
         <f7-block inner>
-            <f7-list form no-hairlines>
+            <f7-row>
                 <!-- MATRÍCULA -->
-                <f7-list-input
-                        type="text"
-                        label="Introducir la matrícula del vehículo"
-                        :value="license_plate"
-                        @input="license_plate = $event.target.value"
-                ></f7-list-input>
+                <div class="custom-input" style="width: 100%">
+                    <div class="item-title item-label">Introducir la matrícula del vehículo</div>
+                    <f7-input
+                            type="text"
+                            :value="license_plate"
+                            @input="license_plate = $event.target.value"
+                            style="height: 50px;"
+                    ></f7-input>
+                </div>
 
-            </f7-list>
+            </f7-row>
         </f7-block>
 
         <!-- SUBMIT -->

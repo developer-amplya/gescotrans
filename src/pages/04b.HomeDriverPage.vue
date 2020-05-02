@@ -12,11 +12,11 @@
 
         <f7-block>
             <f7-list-item>
-                <f7-button fill href="/orders-page/start">Comenzar orden</f7-button>
+                <f7-button fill raised href="/orders-page/start">Comenzar orden</f7-button>
             </f7-list-item>
 
             <f7-list-item>
-                <f7-button fill href="/orders-page/terminate">Finalizar orden</f7-button>
+                <f7-button fill raised href="/orders-page/terminate">Finalizar orden</f7-button>
             </f7-list-item>
         </f7-block>
 
