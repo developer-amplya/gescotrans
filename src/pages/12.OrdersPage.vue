@@ -1,15 +1,18 @@
 <template>
     <f7-page>
-        <f7-navbar title="" back-link="Volver"></f7-navbar>
+        <f7-navbar back-link="Volver">
+            <f7-nav-title>
+                <span v-if="action === 'start'">Comenzar orden</span>
+                <span v-else>Finalizar orden</span>
+            </f7-nav-title>
+            <f7-nav-right>
+                <f7-link panel-open="right">
+                    <f7-icon material="menu"></f7-icon>
+                </f7-link>
+            </f7-nav-right>
+        </f7-navbar>
 
         <f7-block>
-
-            <!-- Header -->
-            <h3 class="center">Orden Check
-                <span v-if="action === 'start'">IN (comenzar)</span>
-                <span v-else>OUT (terminar)</span></h3>
-
-            <hr>
 
             <!-- Orders -->
             <orders-list :orders="orders" @order-selected="handleSelected"></orders-list>
@@ -18,7 +21,7 @@
             <br>
 
             <!-- Confirm -->
-            <f7-button>Confirmar</f7-button>
+            <f7-button fill raised="">Confirmar</f7-button>
 
         </f7-block>
 
