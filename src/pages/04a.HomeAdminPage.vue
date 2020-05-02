@@ -12,7 +12,7 @@
 
         <f7-block>
             <f7-card outline>
-                <div @click="viewTraffic">
+                <div @click="viewTraffic" style="text-align: center">
                     <h1>
                         <f7-icon material="event_note" size="48px"></f7-icon>&nbsp;&nbsp;Tráfico
                     </h1>
@@ -20,29 +20,28 @@
             </f7-card>
 
             <f7-card outline>
-                <div @click="newCargoNote">
+                <div style="text-align: center; padding: 20px">
                     <h1>
                         <f7-icon material="library_add" size="48px"></f7-icon>&nbsp;&nbsp;Nota de Carga
                     </h1>
-                </div>
-            </f7-card>
-
-            <f7-card outline>
-                <div @click="newCustomer">
-                    <h1>
-                        <f7-icon material="assignment_ind" size="48px"></f7-icon>&nbsp;&nbsp;Nuevo Cliente
-                    </h1>
+                    <f7-button fill raised href="/cargo-note-select-service">SELECCIONAR SERVICIO</f7-button>
+                    <br>
+                    <f7-button fill raised href="/cargo-note-custom-service">SERVICIO PERSONALIZADO</f7-button>
                 </div>
             </f7-card>
         </f7-block>
+
+        <Footer />
     </f7-page>
 </template>
 
 <script>
     import {mapGetters} from "vuex";
+    import Footer from '../layout/Footer';
 
     export default {
         name: "HomeAdminPage",
+        components: {Footer},
         computed: {
             ...mapGetters([])
         },
@@ -51,14 +50,14 @@
             {
                 this.$f7router.navigate("/view-traffic");
             },
-            newCargoNote()
+            newCargoNoteSelectService()
             {
-                this.$f7router.navigate("/cargo-note");
+                this.$f7router.navigate("/cargo-note-select-service");
             },
-            newCustomer()
+            newCargoNoteCustomService()
             {
-                //
-            }
+                this.$f7router.navigate("/cargo-note-custom-service");
+            },
         }
     };
 </script>

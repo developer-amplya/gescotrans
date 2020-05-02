@@ -6,7 +6,8 @@ import HomeAdminPage from './pages/04a.HomeAdminPage.vue';
 import HomeDriverPage from './pages/04b.HomeDriverPage.vue';
 import ViewTraffic from './pages/05.ViewTraffic.vue';
 import DeliveryNote from './pages/06.DeliveryNote.vue';
-import CargoNote from './pages/07.CargoNote.vue';
+import CargoNoteSelectService from './pages/07a.CargoNoteSelectService.vue';
+import CargoNoteCustomService from './pages/07b.CargoNoteCustomService.vue';
 import CustomersList from './pages/08.CustomersList.vue';
 import ServicesList from './pages/09.ServicesList.vue';
 import SuppliersList from './pages/10.SuppliersList.vue';
@@ -52,8 +53,12 @@ export default [
         props: true,
     },
     {
-        path: '/cargo-note',
-        component: CargoNote
+        path: '/cargo-note-select-service',
+        component: CargoNoteSelectService
+    },
+    {
+        path: '/cargo-note-custom-service',
+        component: CargoNoteCustomService
     },
     {
         path: '/customers-list',

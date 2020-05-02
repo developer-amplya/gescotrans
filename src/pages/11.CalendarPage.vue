@@ -2,7 +2,7 @@
     <f7-page>
 
         <!-- Navbar -->
-        <f7-navbar back-link back-link-force back-link-url="/cargo-note" title="Seleccione una fecha">
+        <f7-navbar back-link title="Seleccione una fecha">
             <f7-nav-right>
                 <f7-link panel-open="right">
                     <f7-icon material="more_vert"></f7-icon>

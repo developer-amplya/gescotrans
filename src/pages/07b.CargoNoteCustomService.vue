@@ -14,42 +14,59 @@
         <f7-block>
 
             <f7-card outline>
-                <div @click="selectService">
-                    <h3>
-                        <f7-icon material="assignment" size="28px"></f7-icon>&nbsp;&nbsp;Servicio
-                    </h3>
-                    <p><strong>{{ getService[1] }}</strong>
-                    </p>
-                </div>
+                <h3>
+                    <f7-icon material="assignment" size="28px"></f7-icon>&nbsp;&nbsp;Servicio
+                </h3>
 
                 <f7-row>
-                    <f7-col>
-                        <div class="custom-input"
-                             @click="gotoCalendar">
-                            <div class="item-title item-label">Fecha</div>
-                            <f7-input
-                                    type="text"
-                                    readonly
-                                    :value="getCargoNoteDate"
-                            ></f7-input>
-                        </div>
-                    </f7-col>
-                    <f7-col>
-                        <div class="custom-input">
-                            <div class="item-title item-label">Hora</div>
-                            <f7-input
-                                    type="text"
-                                    :value="time"
-                                    readonly="readonly"
-                                    id="picker-time"
-                                    @change="time = $event.target.value"
-                            ></f7-input>
-                        </div>
-                    </f7-col>
+                    <div class="custom-input">
+                        <div class="item-title item-label">Nombre</div>
+                        <f7-input
+                                type="text"
+                                :value="service"
+                                @input="service = $event.target.value"
+                        ></f7-input>
+                    </div>
                 </f7-row>
 
                 <f7-row>
-                    <div class="custom-input" style="width: 100%">
+                    <div class="custom-input">
+                        <div class="item-title item-label">Precio</div>
+                        <f7-input
+                                type="number"
+                                :value="price"
+                                @input="price = $event.target.value"
+                        ></f7-input>
+                    </div>
+                </f7-row>
+
+                <f7-row>
+                    <div class="custom-input"
+                         @click="gotoCalendar">
+                        <div class="item-title item-label">Fecha</div>
+                        <f7-input
+                                type="text"
+                                readonly
+                                :value="getCargoNoteDate"
+                        ></f7-input>
+                    </div>
+                </f7-row>
+
+                <f7-row>
+                    <div class="custom-input">
+                        <div class="item-title item-label">Hora</div>
+                        <f7-input
+                                type="text"
+                                :value="time"
+                                readonly="readonly"
+                                id="picker-time"
+                                @change="time = $event.target.value"
+                        ></f7-input>
+                    </div>
+                </f7-row>
+
+                <f7-row>
+                    <div class="custom-input">
                         <div class="item-title item-label">Observaciones</div>
                         <f7-input
                                 type="textarea"
@@ -101,13 +118,15 @@
 
 <script>
     import axios from "axios";
-    import {WS_PATH} from "../config";
-    import {mapGetters} from "vuex";
+    import { WS_PATH } from "../config";
+    import { mapGetters } from "vuex";
 
     export default {
-        name: "CargoNote",
+        name: "CargoNoteSelectService",
         data() {
             return {
+                service: '',
+                price: 0,
                 hour: null,
                 minute: null,
                 time: '',
@@ -115,7 +134,7 @@
             };
         },
         computed: {
-            ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate'])
+            ...mapGetters(["getCustomer", "getSupplier", 'getCargoNoteDate'])
         },
         mounted() {
             var picker = this.$f7.picker.create({
@@ -152,9 +171,6 @@
             selectCustomer() {
                 this.$f7router.navigate("/customers-list");
             },
-            selectService() {
-                this.$f7router.navigate("/services-list");
-            },
             selectSupplier() {
                 this.$f7router.navigate("/suppliers-list");
             },
@@ -165,9 +181,10 @@
 
                 if (
                     this.getCustomer[0] === '' ||
-                    this.getService[0] === '' ||
                     this.getSupplier[0] === '' ||
-                    this.date === null ||
+                    this.getCargoNoteDate === null ||
+                    this.service === '' ||
+                    this.price === 0 ||
                     this.time === 'Hora'
                 ) {
                     this.$f7.dialog.alert("Debe completar todos los datos", "Atención");
@@ -189,11 +206,12 @@
                 bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
                 //--------------------------------------
                 bodyFormData.set("cod_cliente", this.getCustomer[0]);
-                bodyFormData.set("cod_servicio", this.getService[0]);
+                bodyFormData.set("cod_servicio", this.service); // ??????????
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
                 bodyFormData.set("txt_observaciones", this.comments);
+                bodyFormData.set("txt_precio", this.price);
 
                 axios({
                     method: "post",
@@ -254,6 +272,7 @@
         border-radius: 5px;
         margin: 6px;
         padding: 4px;
+        width: 100%;
     }
 
     .custom-input .input-with-value {

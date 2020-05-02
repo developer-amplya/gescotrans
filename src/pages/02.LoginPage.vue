@@ -117,6 +117,17 @@
                         // Preloader Off
                         this.$f7.dialog.close();
 
+                        // Temporalmente!!!
+                        if(this.log_in.user === 'javi') {
+                            this.$store.dispatch("setUserRole", 'admin');
+                            this.$f7router.navigate("/home-admin", { clearPreviousHistory: true });
+                            return
+                        }else {
+                            this.$store.dispatch("setUserRole", 'driver');
+                            this.$f7router.navigate("/license-plate", {clearPreviousHistory: true});
+                            return
+                        }
+
                         if (response.data.usuario_valido === "ok") {
                             let load_states = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.ls_estados_carga))
@@ -128,12 +139,6 @@
                             this.$store.dispatch("setUserCode", response.data.codigo_usuario);
                             this.$store.dispatch("setUserRole", response.data.rol_usuario);
                             this.$store.dispatch("setLoadStates", load_states);
-
-                            // Temporalmente!!!
-                            if(this.log_in.user === 'javi')
-                                this.$store.dispatch("setUserRole", 'admin');
-                            else
-                                this.$store.dispatch("setUserRole", 'driver');
 
                             // Retrieve master data
                             this.fetchMasterData(); //TODO: Si falla la carga de datos, ¿se debe permitir el acceso?
