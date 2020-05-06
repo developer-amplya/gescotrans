@@ -20,6 +20,11 @@
             <br>
             <br>
 
+            <!-- Scan document -->
+            <f7-button fill raised="">Escanear albarán</f7-button>
+
+            <br>
+
             <!-- Confirm -->
             <f7-button fill raised="">Confirmar</f7-button>
 
