@@ -35,7 +35,7 @@ const state = {
     service: ['', 'Seleccionar...'],
     supplier: ['', 'Seleccionar...'],
     cargo_note_date: null,
-    license_plate: '',
+    license_plate: 'Seleccionar...',
 }
 
 const mutations = {

@@ -124,11 +124,12 @@
                             return
                         }else {
                             this.$store.dispatch("setUserRole", 'driver');
-                            this.$f7router.navigate("/license-plate", {clearPreviousHistory: true});
+                            this.$f7router.navigate("/license-plate");
                             return
                         }
 
-                        if (response.data.usuario_valido === "ok") {
+                        //if (response.data.usuario_valido === "ok") {
+                        if (true) {
                             let load_states = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.ls_estados_carga))
                             );
