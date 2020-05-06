@@ -11,6 +11,15 @@
         </f7-navbar>
 
         <f7-block>
+
+            <f7-card outline>
+                <div @click="viewTraffic" style="text-align: center">
+                    <h1>
+                        <f7-icon material="event_note" size="48px"></f7-icon>&nbsp;&nbsp;Agenda
+                    </h1>
+                </div>
+            </f7-card>
+
             <f7-list-item>
                 <f7-button fill raised href="/orders-page/start">Comenzar orden</f7-button>
             </f7-list-item>
