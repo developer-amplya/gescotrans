@@ -23,8 +23,8 @@
                         <div class="item-title item-label">Nombre</div>
                         <f7-input
                                 type="text"
-                                :value="service"
-                                @input="service = $event.target.value"
+                                :value="service_name"
+                                @input="service_name = $event.target.value"
                         ></f7-input>
                     </div>
                 </f7-row>
@@ -106,6 +106,16 @@
                 </div>
             </f7-card>
 
+            <f7-card v-if="getSupplier[0] !== ''" outline>
+                <div @click="selectSupplier">
+                    <h3>
+                        <f7-icon material="local_shipping" size="28px"></f7-icon>&nbsp;&nbsp;Matrícula
+                    </h3>
+                    <p><strong>{{ getLicensePlate }}</strong>
+                    </p>
+                </div>
+            </f7-card>
+
         </f7-block>
 
         <!-- Submit -->
@@ -125,7 +135,7 @@
         name: "CargoNoteSelectService",
         data() {
             return {
-                service: '',
+                service_name: '',
                 price: 0,
                 hour: null,
                 minute: null,
@@ -134,7 +144,7 @@
             };
         },
         computed: {
-            ...mapGetters(["getCustomer", "getSupplier", 'getCargoNoteDate'])
+            ...mapGetters(["getCustomer", "getSupplier", 'getCargoNoteDate', 'getLicensePlate'])
         },
         mounted() {
             var picker = this.$f7.picker.create({
@@ -206,12 +216,13 @@
                 bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
                 //--------------------------------------
                 bodyFormData.set("cod_cliente", this.getCustomer[0]);
-                bodyFormData.set("cod_servicio", this.service); // ??????????
+                bodyFormData.set("cod_servicio", 0); // Código maestro
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
                 bodyFormData.set("txt_observaciones", this.comments);
                 bodyFormData.set("txt_precio", this.price);
+                bodyFormData.set("txt_service_name", this.service_name);
 
                 axios({
                     method: "post",

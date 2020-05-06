@@ -99,6 +99,16 @@
                 </div>
             </f7-card>
 
+            <f7-card v-if="getSupplier[0] === ''" outline>
+                <div @click="selectSupplier">
+                    <h3>
+                        <f7-icon material="local_shipping" size="28px"></f7-icon>&nbsp;&nbsp;Matrícula
+                    </h3>
+                    <p><strong>{{ getLicensePlate }}</strong>
+                    </p>
+                </div>
+            </f7-card>
+
         </f7-block>
 
         <!-- Submit -->
@@ -126,7 +136,7 @@
             };
         },
         computed: {
-            ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate'])
+            ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate', 'getLicensePlate'])
         },
         mounted() {
             var picker = this.$f7.picker.create({
