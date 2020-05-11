@@ -1,0 +1,31 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    },
+    "cordova-plugin-cocoapod-support": {
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    },
+    "cordova-plugin-document-scanner": {
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "es.amplya.aytransportes"
+    }
+  },
+  "dependent_plugins": {}
+}
