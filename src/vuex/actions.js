@@ -15,6 +15,8 @@ import {
     SET_CARGO_NOTE_DATE,
     SET_LICENSE_PLATES_LIST,
     SET_LICENSE_PLATE,
+    SET_DRIVERS_LIST,
+    SET_DRIVER,
 } from './mutations';
 
 export default {
@@ -62,5 +64,11 @@ export default {
     },
     setLicensePlate({commit}, license_plate) {
         commit(SET_LICENSE_PLATE, license_plate);
+    },
+    setDriversList({commit}, drivers_list) {
+        commit(SET_DRIVERS_LIST, drivers_list);
+    },
+    setDriver({commit}, driver) {
+        commit(SET_DRIVER, driver);
     },
 };

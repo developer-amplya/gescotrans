@@ -18,6 +18,8 @@ import {
     SET_CARGO_NOTE_DATE,
     SET_LICENSE_PLATES_LIST,
     SET_LICENSE_PLATE,
+    SET_DRIVERS_LIST,
+    SET_DRIVER,
 } from './mutations';
 
 Vue.use(Vuex)
@@ -38,6 +40,8 @@ const state = {
     cargo_note_date: null,
     license_plates_list: {},
     license_plate: 'Seleccionar...',
+    drivers_list: {},
+    driver: 'Seleccionar...',
 }
 
 const mutations = {
@@ -85,6 +89,12 @@ const mutations = {
     },
     [SET_LICENSE_PLATE](state, license_plate) {
         state.license_plate = license_plate;
+    },
+    [SET_DRIVERS_LIST](state, drivers_list) {
+        state.drivers_list = drivers_list;
+    },
+    [SET_DRIVER](state, driver) {
+        state.driver = driver;
     },
 }
 

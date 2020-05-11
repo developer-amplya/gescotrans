@@ -44,4 +44,10 @@ export default {
     getLicensePlate(state) {
         return (state.license_plate);
     },
+    getDriversList(state) {
+        return (state.drivers_list);
+    },
+    getDriver(state) {
+        return (state.driver);
+    },
 };
