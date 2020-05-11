@@ -16,6 +16,7 @@ import {
     SET_SERVICE,
     SET_SUPPLIER,
     SET_CARGO_NOTE_DATE,
+    SET_LICENSE_PLATES_LIST,
     SET_LICENSE_PLATE,
 } from './mutations';
 
@@ -35,6 +36,7 @@ const state = {
     service: ['', 'Seleccionar...'],
     supplier: ['', 'Seleccionar...'],
     cargo_note_date: null,
+    license_plates_list: {},
     license_plate: 'Seleccionar...',
 }
 
@@ -77,6 +79,9 @@ const mutations = {
     },
     [SET_CARGO_NOTE_DATE](state, date) {
         state.cargo_note_date = date;
+    },
+    [SET_LICENSE_PLATES_LIST](state, license_plates_list) {
+        state.license_plates_list = license_plates_list;
     },
     [SET_LICENSE_PLATE](state, license_plate) {
         state.license_plate = license_plate;

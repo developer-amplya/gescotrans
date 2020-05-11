@@ -38,6 +38,9 @@ export default {
     getCargoNoteDate(state) {
         return (state.cargo_note_date);
     },
+    getLicensePlatesList(state) {
+        return (state.license_plates_list);
+    },
     getLicensePlate(state) {
         return (state.license_plate);
     },
