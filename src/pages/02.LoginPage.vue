@@ -42,8 +42,8 @@
 
 <script>
     import axios from "axios";
-    import {WS_PATH} from "../config";
-    import {mapGetters} from "vuex";
+    import { WS_PATH } from "../config";
+    import { mapGetters } from "vuex";
 
     export default {
         name: "LoginPage",
@@ -112,24 +112,12 @@
                 })
                     .then(response => {
 
-                        // console.log(response);
+                        //console.log(response);
 
                         // Preloader Off
                         this.$f7.dialog.close();
 
-                        // Temporalmente!!!
-                        if(this.log_in.user === 'javi') {
-                            this.$store.dispatch("setUserRole", 'admin');
-                            this.$f7router.navigate("/home-admin", { clearPreviousHistory: true });
-                            return
-                        }else {
-                            this.$store.dispatch("setUserRole", 'driver');
-                            this.$f7router.navigate("/license-plate");
-                            return
-                        }
-
-                        //if (response.data.usuario_valido === "ok") {
-                        if (true) {
+                        if (response.data.usuario_valido) {
                             let load_states = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.ls_estados_carga))
                             );
@@ -138,17 +126,17 @@
                             this.$store.dispatch("setUserName", this.log_in.user);
                             this.$store.dispatch("setUserPass", this.log_in.password);
                             this.$store.dispatch("setUserCode", response.data.codigo_usuario);
-                            this.$store.dispatch("setUserRole", response.data.rol_usuario);
+                            this.$store.dispatch("setUserRole", response.data.perfil);
                             this.$store.dispatch("setLoadStates", load_states);
 
                             // Retrieve master data
                             this.fetchMasterData(); //TODO: Si falla la carga de datos, ¿se debe permitir el acceso?
 
                             // Navigate
-                            if(this.getUserRole === 'admin')
-                                this.$f7router.navigate("/home-admin", {clearPreviousHistory: true});
+                            if (this.getUserRole === 'admin')
+                                this.$f7router.navigate("/home-admin", { clearPreviousHistory: true });
                             else
-                                this.$f7router.navigate("/license-plate");
+                                this.$f7router.navigate("/home-driver");
 
                         } else {
                             this.$f7.dialog.alert("No se ha podido conectar. Usuario no válido.", "Error");
@@ -182,12 +170,12 @@
                 })
                     .then(response => {
 
-                        console.log(response);
+                        console.log(response.data);
 
                         // Preloader Off
                         this.$f7.dialog.close();
 
-                        if (response.data.res === 0) {
+                        if (response.data.usuario_valido) {
 
                             // Customers
                             let customers = JSON.parse(
