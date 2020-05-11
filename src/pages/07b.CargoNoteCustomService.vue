@@ -107,7 +107,7 @@
             </f7-card>
 
             <f7-card v-if="getSupplier[0] !== ''" outline>
-                <div @click="selectSupplier">
+                <div @click="selectLicensePlate">
                     <h3>
                         <f7-icon material="local_shipping" size="28px"></f7-icon>&nbsp;&nbsp;Matrícula
                     </h3>
@@ -184,6 +184,10 @@
             selectSupplier() {
                 this.$f7router.navigate("/suppliers-list");
             },
+            selectLicensePlate() {
+                let supplier = this.getSupplier[0];
+                this.$f7router.navigate("/license-plates-list/" + supplier);
+            },
             gotoCalendar() {
                 this.$f7router.navigate("/calendar");
             },
@@ -193,7 +197,7 @@
                     this.getCustomer[0] === '' ||
                     this.getSupplier[0] === '' ||
                     this.getCargoNoteDate === null ||
-                    this.service === '' ||
+                    this.service_name === '' ||
                     this.price === 0 ||
                     this.time === 'Hora'
                 ) {
@@ -216,8 +220,9 @@
                 bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
                 //--------------------------------------
                 bodyFormData.set("cod_cliente", this.getCustomer[0]);
-                bodyFormData.set("cod_servicio", 0); // Código maestro
+                bodyFormData.set("cod_servicio", '000000'); // Código maestro
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
+                bodyFormData.set("txt_matricula", this.getLicensePlate);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
                 bodyFormData.set("txt_observaciones", this.comments);

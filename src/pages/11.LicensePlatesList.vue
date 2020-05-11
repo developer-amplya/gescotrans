@@ -3,7 +3,7 @@
     <f7-page>
         <!-- Navbar -->
         <f7-navbar back-link>
-            <f7-nav-title>Lista de Proveedores</f7-nav-title>
+            <f7-nav-title>Lista de matrículas</f7-nav-title>
             <f7-nav-right>
                 <f7-link panel-open="right">
                     <f7-icon material="menu"></f7-icon>
@@ -32,22 +32,13 @@
                 virtual-list
                 :virtual-list-params="{ items, searchAll, renderExternal, height: $theme.ios ? 63 : ($theme.md ? 73 : 46)}">
             <ul>
-                <li v-for="(contact, index) in vlData.items"
+                <li v-for="(license_plate, index) in vlData.items"
                     :key="index"
                     :style="`top: ${vlData.topPosition}px`">
-                    <div class="item-content item-divider" v-if="contact[0] === '-1'">
-                        <div class="item-inner">
-                            {{contact[1]}}
-                        </div>
-                    </div>
-                    <div class="item-content" v-else @click="selectSupplier(contact[0], contact[1], contact[2])">
+                    <div class="item-content" @click="selectLicensePlate(license_plate[1])">
                         <div class="item-inner">
                             <div class="item-title">
-                                {{contact[1]}}
-                            </div>
-                            <div class="item-after">
-                                <f7-icon slot="media" material="phone" size="18px"></f7-icon>
-                                {{contact[2]}}
+                                {{license_plate[1]}}
                             </div>
                         </div>
                     </div>
@@ -63,7 +54,8 @@
     import {mapGetters} from "vuex";
 
     export default {
-        name: "SuppliersList",
+        name: "LicensePlatesList",
+        props: ['supplier'],
         data() {
             return {
                 items: [],
@@ -73,10 +65,12 @@
             };
         },
         created() {
-            this.items = this.getSuppliersList
+            let license_plates = this.getLicensePlatesList
+            let supplier = this.supplier
+            this.items = license_plates[supplier]
         },
         computed: {
-            ...mapGetters(['getSuppliersList'])
+            ...mapGetters(['getLicensePlatesList'])
         },
         methods: {
             searchAll(query, items) {
@@ -90,8 +84,8 @@
             renderExternal(vl, vlData) {
                 this.vlData = vlData;
             },
-            selectSupplier(code, name, phone) {
-                this.$store.dispatch("setSupplier", [code, name, phone]);
+            selectLicensePlate(license_plate) {
+                this.$store.dispatch("setLicensePlate", license_plate);
                 this.$f7router.back();
             },
         },

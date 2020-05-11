@@ -195,6 +195,12 @@
                             );
                             this.$store.dispatch('setServicesList', services);
 
+                            // License plates
+                            let license_plates = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.dic_matriculasProveedor))
+                            );
+                            this.$store.dispatch('setLicensePlatesList', license_plates);
+
                         } else {
                             this.$f7.dialog.alert("No se han podido recuperar los datos", "Error");
                         }

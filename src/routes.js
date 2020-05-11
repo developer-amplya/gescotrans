@@ -11,6 +11,7 @@ import CargoNoteCustomService from './pages/07b.CargoNoteCustomService.vue';
 import CustomersList from './pages/08.CustomersList.vue';
 import ServicesList from './pages/09.ServicesList.vue';
 import SuppliersList from './pages/10.SuppliersList.vue';
+import LicensePlatesList from './pages/11.LicensePlatesList.vue';
 import CalendarPage from './pages/12.CalendarPage.vue';
 import OrdersPage from './pages/13.OrdersPage.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
@@ -71,6 +72,11 @@ export default [
     {
         path: '/suppliers-list',
         component: SuppliersList
+    },
+    {
+        path: '/license-plates-list/:supplier',
+        component: LicensePlatesList,
+        props: true
     },
     {
         path: '/calendar',
