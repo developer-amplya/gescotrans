@@ -45,7 +45,7 @@
         </f7-sheet>
 
         <!-- Floating Action Button -->
-        <f7-fab position="right-bottom" slot="fixed" color="blue" href="/cargo-note">
+        <f7-fab v-if="getUserRole === 'admin'" position="right-bottom" slot="fixed" color="blue" href="/cargo-note">
             <f7-icon ios="f7:add" md="material:add"></f7-icon>
         </f7-fab>
 
@@ -69,7 +69,7 @@
             }
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates"])
+            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates", "getUserRole"])
         },
         mounted() {
             if(this.getLoadStates.length > 1)
@@ -143,7 +143,7 @@
                         // Preloader Off
                         this.$f7.dialog.close();
 
-                        if (response.data.usuario_valido === "ok") {
+                        if (response.data.usuario_valido === true) {
 
                             let schedule = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.agenda))
