@@ -41,7 +41,7 @@ const state = {
     license_plates_list: {},
     license_plate: 'Seleccionar...',
     drivers_list: {},
-    driver: 'Seleccionar...',
+    driver: ['', 'Seleccionar...'],
 }
 
 const mutations = {

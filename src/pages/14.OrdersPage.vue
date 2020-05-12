@@ -21,7 +21,7 @@
             <br>
 
             <!-- Scan document -->
-            <f7-button fill raised="">Escanear albarán</f7-button>
+            <f7-button v-if="action === 'terminate'" fill raised="">Escanear albarán</f7-button>
 
             <br>
 

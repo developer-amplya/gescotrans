@@ -12,8 +12,9 @@ import CustomersList from './pages/08.CustomersList.vue';
 import ServicesList from './pages/09.ServicesList.vue';
 import SuppliersList from './pages/10.SuppliersList.vue';
 import LicensePlatesList from './pages/11.LicensePlatesList.vue';
-import CalendarPage from './pages/12.CalendarPage.vue';
-import OrdersPage from './pages/13.OrdersPage.vue';
+import DriversList from './pages/12.DriversList.vue';
+import CalendarPage from './pages/13.CalendarPage.vue';
+import OrdersPage from './pages/14.OrdersPage.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
 import PanelRightPage from './pages/panel-right.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -76,6 +77,11 @@ export default [
     {
         path: '/license-plates-list/:supplier',
         component: LicensePlatesList,
+        props: true
+    },
+    {
+        path: '/drivers-list/:supplier',
+        component: DriversList,
         props: true
     },
     {

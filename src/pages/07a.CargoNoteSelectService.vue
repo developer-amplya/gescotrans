@@ -109,6 +109,16 @@
                 </div>
             </f7-card>
 
+            <f7-card v-if="getSupplier[0] !== ''" outline>
+                <div @click="selectDriver">
+                    <h3>
+                        <f7-icon material="local_shipping" size="28px"></f7-icon>&nbsp;&nbsp;Conductor
+                    </h3>
+                    <p><strong>{{ getDriver[1] }}</strong>
+                    </p>
+                </div>
+            </f7-card>
+
         </f7-block>
 
         <!-- Submit -->
@@ -136,7 +146,7 @@
             };
         },
         computed: {
-            ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate', 'getLicensePlate'])
+            ...mapGetters(["getCustomer", "getService", "getSupplier", 'getCargoNoteDate', 'getLicensePlate', 'getDriver'])
         },
         mounted() {
             var picker = this.$f7.picker.create({
@@ -183,6 +193,10 @@
                 let supplier = this.getSupplier[0];
                 this.$f7router.navigate("/license-plates-list/" + supplier);
             },
+            selectDriver() {
+                let supplier = this.getSupplier[0];
+                this.$f7router.navigate("/drivers-list/" + supplier);
+            },
             gotoCalendar() {
                 this.$f7router.navigate("/calendar");
             },
@@ -195,7 +209,7 @@
                     this.getCargoNoteDate === null ||
                     this.price === 0 ||
                     this.time === 'Hora'
-                ) {
+                ) { // ES OBLIGADO ELEGIR MATRÍCULA Y CONDUCTOR?
                     this.$f7.dialog.alert("Debe completar todos los datos", "Atención");
                     return;
                 }
@@ -207,7 +221,6 @@
                 let bodyFormData = new FormData();
                 bodyFormData.set("user", this.getUserName);
                 bodyFormData.set("pass", this.getUserPass);
-                bodyFormData.set("cod_chofer", this.getUserCode);
                 bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
                 bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
                 bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
@@ -218,6 +231,7 @@
                 bodyFormData.set("cod_servicio", this.getService[0]);
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
                 bodyFormData.set("txt_matricula", this.getLicensePlate);
+                bodyFormData.set("cod_chofer", this.getDriver[0]);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
                 bodyFormData.set("txt_observaciones", this.comments);

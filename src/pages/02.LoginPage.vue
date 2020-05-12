@@ -201,6 +201,12 @@
                             );
                             this.$store.dispatch('setLicensePlatesList', license_plates);
 
+                            // Drivers
+                            let drivers = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.dic_choferesProveedor))
+                            );
+                            this.$store.dispatch('setDriversList', drivers);
+
                         } else {
                             this.$f7.dialog.alert("No se han podido recuperar los datos", "Error");
                         }
