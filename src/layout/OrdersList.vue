@@ -3,9 +3,7 @@
 
         <!-- Header -->
         <f7-row no-gap>
-            <f7-col width="20"><h3>Orden</h3></f7-col>
-            <f7-col width="60"><h3>Descripción</h3></f7-col>
-            <f7-col width="20"><h3>Estado</h3></f7-col>
+            <h3>Órdenes en marcha</h3>
         </f7-row>
 
         <!-- Loop -->

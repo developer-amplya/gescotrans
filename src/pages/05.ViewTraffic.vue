@@ -37,7 +37,7 @@
                 <f7-block>
                     <f7-button outline large @click="open_states_picker" sheet-close>Cambiar estado</f7-button>
                     <br>
-                    <f7-button outline large @click="viewDeliveryNote" sheet-close>Escanear nota de entrega</f7-button>
+                    <f7-button outline large @click="viewDeliveryNote" sheet-close>Editar nota</f7-button>
                     <br>
                     <f7-button outline large sheet-close>Cancelar</f7-button>
                 </f7-block>

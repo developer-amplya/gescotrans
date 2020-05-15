@@ -24,9 +24,8 @@
                 <f7-button fill raised href="/orders-page/start">Comenzar orden</f7-button>
             </f7-list-item>
 
-            <f7-list-item>
-                <f7-button fill raised href="/orders-page/terminate">Finalizar orden</f7-button>
-            </f7-list-item>
+            <!-- Orders -->
+            <orders-list :orders="orders" @order-selected="handleSelected"></orders-list>
         </f7-block>
 
         <Footer />
@@ -37,10 +36,23 @@
 <script>
     import {mapGetters} from "vuex";
     import Footer from '../layout/Footer';
+    import OrdersList from '../layout/OrdersList.vue';
 
     export default {
         name: "HomeDriverPage",
-        components: {Footer},
+        components: {Footer, OrdersList},
+        data() {
+            return {
+                selected: '',
+                orders: [
+                    {code: '12345', description: 'Lorem ipsum amet sicut dolor'},
+                    {code: '12346', description: 'Lorem ipsum amet sicut dolor'},
+                    {code: '12347', description: 'Lorem ipsum amet sicut dolor'},
+                    {code: '12348', description: 'Lorem ipsum amet sicut dolor'},
+                    {code: '12349', description: 'Lorem ipsum amet sicut dolor'}
+                ]
+            };
+        },
         computed: {
             ...mapGetters([])
         },
@@ -56,6 +68,9 @@
             newCustomer()
             {
                 //
+            },
+            handleSelected (code) {
+                console.log(code);
             }
         }
     };

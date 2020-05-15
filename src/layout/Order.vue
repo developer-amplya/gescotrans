@@ -1,9 +1,8 @@
 <template>
-    <f7-list-item class="" @click="orderSelect(order.code, $event)" :class="{active: isSelected}">
+    <f7-list-item class="" @click="toDetail(order.code, $event)" :class="{active: isSelected}">
         <f7-row no-gap>
-            <f7-col width="20">{{ order.code }}</f7-col>
-            <f7-col width="60">{{ order.description }}</f7-col>
-            <f7-col width="20">{{ order.status }}</f7-col>
+            <f7-col width="30">{{ order.code }}</f7-col>
+            <f7-col width="70">{{ order.description }}</f7-col>
         </f7-row>
     </f7-list-item>
 </template>
@@ -18,6 +17,9 @@
             };
         },
         methods: {
+            toDetail(orderCode) {
+                this.$f7router.navigate('/order-detail-page/start');
+            },
             orderSelect(code, event) {
                 this.isSelected = !this.isSelected;
                 this.$parent.$emit('order-selected', code); // Leveraging the $parent property we can send the event
@@ -43,6 +45,11 @@
 
     li {
         list-style: none;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 6px;
+        padding-right: 6px;
+        overflow: hidden;
     }
 
     .light {
