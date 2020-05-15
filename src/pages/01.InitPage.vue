@@ -7,12 +7,6 @@
             </div>
         </f7-block>
 
-        <f7-block>
-            <div class="logo-amplya">
-                <img src="../assets/logo-amplya-blanco.png">
-            </div>
-        </f7-block>
-
         <f7-toolbar position="bottom" no-shadow no-hairline>
             <p>
                 <small>&copy; 2019 Amplya</small>
@@ -20,7 +14,7 @@
 
             <!-- Version -->
             <div class="version">
-                <small>v.0.0.31</small>
+                <small>v.0.0.32</small>
             </div>
         </f7-toolbar>
     </f7-page>
