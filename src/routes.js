@@ -15,6 +15,7 @@ import LicensePlatesList from './pages/11.LicensePlatesList.vue';
 import DriversList from './pages/12.DriversList.vue';
 import CalendarPage from './pages/13.CalendarPage.vue';
 import OrdersPage from './pages/14.OrdersPage.vue';
+import OrderDetailPage from './pages/15.OrderDetailPage.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
 import PanelRightPage from './pages/panel-right.vue';
 import NotFoundPage from './pages/not-found.vue';
@@ -91,6 +92,11 @@ export default [
     {
         path: '/orders-page/:action',
         component: OrdersPage,
+        props: true
+    },
+    {
+        path: '/order-detail-page/:action',
+        component: OrderDetailPage,
         props: true
     },
     {
