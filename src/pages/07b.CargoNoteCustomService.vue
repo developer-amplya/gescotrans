@@ -154,7 +154,7 @@
             };
         },
         computed: {
-            ...mapGetters(["getCustomer", "getSupplier", 'getCargoNoteDate', 'getLicensePlate', 'getDriver'])
+            ...mapGetters(["getUserName", "getUserPass", "getCustomer", "getSupplier", 'getCargoNoteDate', 'getLicensePlate', 'getDriver'])
         },
         mounted() {
             var picker = this.$f7.picker.create({
@@ -235,7 +235,7 @@
                 bodyFormData.set("cod_cliente", this.getCustomer[0]);
                 bodyFormData.set("cod_servicio", '000000'); // Código maestro
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
-                bodyFormData.set("txt_matricula", this.getLicensePlate);
+                bodyFormData.set("matricula", this.getLicensePlate);
                 bodyFormData.set("cod_chofer", this.getDriver[0]);
                 bodyFormData.set("txt_fecha", this.getCargoNoteDate);
                 bodyFormData.set("txt_hora", this.time);
@@ -256,7 +256,7 @@
                         // Preloader Off
                         this.$f7.dialog.close();
 
-                        if (response.data.res === 0) {
+                        if (response.data.cod_nota !== 'KO') {
 
                             // Reset store
                             this.$store.dispatch("setCustomer", ['', 'Seleccionar...']);
