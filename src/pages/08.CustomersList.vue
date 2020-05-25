@@ -40,7 +40,7 @@
                             {{contact[1]}}
                         </div>
                     </div>
-                    <div class="item-content" v-else @click="selectPatient(contact[0], contact[1], contact[2])">
+                    <div class="item-content" v-else @click="selectCustomer(contact[0], contact[1], contact[2])">
                         <div class="item-inner">
                             <div class="item-title">
                                 {{contact[1]}}
@@ -91,7 +91,7 @@
             renderExternal(vl, vlData) {
                 this.vlData = vlData;
             },
-            selectPatient(code, name, phone) {
+            selectCustomer(code, name, phone) {
                 this.$store.dispatch("setCustomer", [code, name, phone]);
                 this.$f7router.back();
             },

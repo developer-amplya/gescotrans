@@ -263,6 +263,8 @@
                             this.$store.dispatch("setService", ['', 'Seleccionar...']);
                             this.$store.dispatch("setSupplier", ['', 'Seleccionar...']);
                             this.$store.dispatch("setCargoNoteDate", null);
+                            this.$store.dispatch("setLicensePlate", 'Seleccionar...');
+                            this.$store.dispatch("setDriver", ['', 'Seleccionar...']);
 
                             // Show notification
                             let notification = this.$f7.toast.create({
