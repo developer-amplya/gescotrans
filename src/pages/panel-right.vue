@@ -34,6 +34,13 @@
                 ></f7-list-item>
                 <f7-list-item
                         v-if="getUserRole === 'driver'"
+                        link="/view-traffic"
+                        title="Agenda"
+                        view="#main-view"
+                        panel-close
+                ></f7-list-item>
+                <f7-list-item
+                        v-if="getUserRole === 'driver'"
                         link="/orders-page/start"
                         title="Comenzar orden"
                         view="#main-view"
