@@ -8,6 +8,7 @@ import ViewTraffic from './pages/05.ViewTraffic.vue';
 import DeliveryNote from './pages/06.DeliveryNote.vue';
 import CargoNoteSelectService from './pages/07a.CargoNoteSelectService.vue';
 import CargoNoteCustomService from './pages/07b.CargoNoteCustomService.vue';
+import EditCargoNote from './pages/07c.EditCargoNote.vue';
 import CustomersList from './pages/08.CustomersList.vue';
 import ServicesList from './pages/09.ServicesList.vue';
 import SuppliersList from './pages/10.SuppliersList.vue';
@@ -62,6 +63,11 @@ export default [
     {
         path: '/cargo-note-custom-service',
         component: CargoNoteCustomService
+    },
+    {
+        path: '/edit-cargo-note/:code',
+        component: EditCargoNote,
+        props: true,
     },
     {
         path: '/customers-list',

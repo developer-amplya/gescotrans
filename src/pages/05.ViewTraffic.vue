@@ -37,7 +37,7 @@
                 <f7-block>
                     <f7-button outline large @click="open_states_picker" sheet-close>Cambiar estado</f7-button>
                     <br>
-                    <f7-button outline large @click="viewDeliveryNote" sheet-close>Editar nota</f7-button>
+                    <f7-button outline large @click="edit_cargo_note" sheet-close>Editar nota</f7-button>
                     <br>
                     <f7-button outline large sheet-close>Cancelar</f7-button>
                 </f7-block>
@@ -172,9 +172,9 @@
                 this.state_code = status;
                 this.$refs.actions_sheet.open();
             },
-            viewDeliveryNote()
+            edit_cargo_note()
             {
-                this.$f7router.navigate("/delivery-note/" + this.shipment_code);
+                this.$f7router.navigate("/edit-cargo-note/" + this.shipment_code);
             },
             change_state() {
                 // Preloader On
