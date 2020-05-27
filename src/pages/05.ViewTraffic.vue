@@ -163,7 +163,7 @@
             openActionsSheet(code, status) {
                 // El conductor es dirigido a otra vista de sólo lectura
                 if(this.getUserRole === 'driver') {
-                    this.$f7router.navigate("/order-detail-page/" + this.shipment_code);
+                    this.$f7router.navigate("/order-detail-page/" + code);
                 }
 
                 if(status === 'FN')
