@@ -120,7 +120,7 @@
 
         <!-- Submit -->
         <f7-toolbar no-hairline position="bottom">
-            <f7-button large fill raised @click="createNote">Modificar</f7-button>
+            <f7-button large fill raised @click="modifyNote">Modificar</f7-button>
         </f7-toolbar>
 
     </f7-page>
@@ -138,21 +138,20 @@
             return {
                 hour: null,
                 minute: null,
-                note: { // HARDCODED
-                    note_code: '014312',
-                    service_name: 'Servicio libre',
-                    service_code: '000059',
-                    service_price: '180.00',
-                    service_date: '12/05/2020',
-                    service_time: '16:45',
-                    service_comments: 'Llamar por teléfono, el timbre no funciona',
-                    customer_code: '00182',
-                    customer_name: 'Regesvinto',
-                    supplier_code: '00000',
-                    supplier_name: 'Vecigentorix',
-                    license_plate: '1479KHZ',
-                    driver_code: '05',
-                    driver_name: 'Ataulfo',
+                note: {
+                    service_name: '',
+                    service_code: '',
+                    service_price: '',
+                    service_date: '',
+                    service_time: '',
+                    service_comments: '',
+                    customer_code: '',
+                    customer_name: '',
+                    supplier_code: '',
+                    supplier_name: '',
+                    license_plate: '',
+                    driver_code: '',
+                    driver_name: '',
                 }
             };
         },
@@ -161,13 +160,63 @@
         },
         mounted() {
 
-            // TODO: llamada para obtener los datos de la nota a partir de su código
+            // Llamada para obtener los datos de la nota a partir de su código
+            // Preloader On
+            this.$f7.dialog.preloader("Cargando...");
 
-            this.$store.dispatch("setCargoNoteDate", this.note.service_date);
-            this.$store.dispatch("setCustomer", [this.note.customer_code, this.note.customer_name, '']); // TODO: retrieve name, and phone?
-            this.$store.dispatch("setSupplier", [this.note.supplier_code, this.note.supplier_name, '']); // TODO: retrieve name, and phone?
-            this.$store.dispatch("setLicensePlate", this.note.license_plate);
-            this.$store.dispatch("setDriver", [this.note.driver_code, this.note.driver_name]); // TODO: retrieve name
+            // Get schedule
+            let bodyFormData = new FormData();
+            bodyFormData.set("user", this.getUserName);
+            bodyFormData.set("pass", this.getUserPass);
+            bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+            bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+            bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+            bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+            bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+            //--------------------------------------
+            bodyFormData.set("cod_note", this.code);
+
+            axios({
+                method: "post",
+                url: WS_PATH + "get_note.php",
+                data: bodyFormData,
+                timeout: 15000
+            })
+                .then(response => {
+
+                    //console.log(response)
+
+                    // Preloader Off
+                    this.$f7.dialog.close();
+
+                    if (response.data.cod_nota !== 'KO') {
+
+                        let note = JSON.parse(
+                            this.decodeEntities(JSON.stringify(response.data))
+                        );
+
+                        this.note.service_name = note.txt_service_name;
+                        this.note.service_code = note.cod_servicio;
+                        this.note.service_price = note.txt_precio;
+                        this.note.service_time = note.txt_hora;
+                        this.note.service_comments = note.txt_observaciones;
+                        this.$store.dispatch("setCargoNoteDate", note.txt_fecha);
+                        this.$store.dispatch("setCustomer", [note.cod_cliente, note.nom_cliente, '']);
+                        this.$store.dispatch("setSupplier", [note.cod_proveedor, note.nom_proveedor, '']);
+                        this.$store.dispatch("setLicensePlate", note.matricula);
+                        this.$store.dispatch("setDriver", [note.cod_chofer, note.nom_chofer]);
+
+                    } else {
+                        this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
+                    }
+                })
+                .catch(error => {
+                    //console.log(error);
+                    // Preloader Off
+                    this.$f7.dialog.close();
+                    this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                });
+
 
             var picker = this.$f7.picker.create({
                 inputEl: "#picker-time",
@@ -217,7 +266,7 @@
             gotoCalendar() {
                 this.$f7router.navigate("/calendar");
             },
-            createNote() {
+            modifyNote() {
 
                 if (
                     this.getCustomer[0] === '' ||
@@ -243,6 +292,7 @@
                 bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
                 bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
                 //--------------------------------------
+                bodyFormData.set("cod_nota", this.code);
                 bodyFormData.set("cod_cliente", this.getCustomer[0]);
                 bodyFormData.set("cod_servicio", this.note.service_code);
                 bodyFormData.set("cod_proveedor", this.getSupplier[0]);
@@ -256,7 +306,7 @@
 
                 axios({
                     method: "post",
-                    url: WS_PATH + "nueva_nota.php",
+                    url: WS_PATH + "edit_note.php",
                     data: bodyFormData,
                     timeout: 15000
                 })
@@ -302,6 +352,33 @@
                         // Preloader Off
                         this.$f7.dialog.close();
                         this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
+            },
+            decodeEntities(encodedString) {
+                var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
+                var translate = {
+                    aacute: "á",
+                    eacute: "é",
+                    iacute: "í",
+                    oacute: "ó",
+                    uacute: "ú",
+                    ntilde: "ñ",
+                    Aacute: "Á",
+                    Eacute: "É",
+                    Iacute: "Í",
+                    Oacute: "Ó",
+                    Uacute: "Ú",
+                    Ntilde: "Ñ",
+                    ordf: "ª",
+                    ordm: "º"
+                };
+                return encodedString
+                    .replace(translate_re, function (match, entity) {
+                        return translate[entity];
+                    })
+                    .replace(/&#(\d+);/gi, function (match, numStr) {
+                        var num = parseInt(numStr, 10);
+                        return String.fromCharCode(num);
                     });
             }
         }
