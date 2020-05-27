@@ -19,7 +19,7 @@
             <!-- Orders -->
             <orders-list :orders="orders[1]" state="AS"></orders-list>
 
-            <!--p v-if="orders.length" class="no-orders">NO HAY ÓRDENES PENDIENTES</p-->
+            <p v-if="!ordersPending" class="no-orders">NO HAY ÓRDENES PENDIENTES</p>
 
             <br>
             <br>
@@ -47,7 +47,15 @@
             };
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates", "getUserRole"])
+            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates", "getUserRole"]),
+            ordersPending: function () {
+                if (this.orders.length !== 0) {
+                    let filteredArray = this.orders[1].filter((item) => {
+                        return item[5] === 'AS'
+                    });
+                    return filteredArray.length > 0;
+                }
+            }
         },
         mounted() {
             const d = new Date()
@@ -143,5 +151,6 @@
 <style scoped>
 .no-orders {
     text-align: center;
+    color: #107ED6;
 }
 </style>
