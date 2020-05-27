@@ -64,7 +64,7 @@
             }
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass", "getUserCode", "getSchedule", "getLoadStates", "getUserRole"])
+            ...mapGetters(["getUserName", "getUserPass", "getSchedule", "getLoadStates", "getUserRole"])
         },
         mounted() {
             if(this.getLoadStates.length > 1)
@@ -184,7 +184,6 @@
                 let bodyFormData = new FormData();
                 bodyFormData.set("user", this.getUserName);
                 bodyFormData.set("pass", this.getUserPass);
-                bodyFormData.set("cod_chofer", this.getUserCode);
                 bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
                 bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
                 bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
@@ -193,10 +192,11 @@
                 //--------------------------------------
                 bodyFormData.set("cod_nota", this.shipment_code);
                 bodyFormData.set("cod_estado", this.state_code);
+                bodyFormData.set("matricula", '');
 
                 axios({
                     method: "post",
-                    url: WS_PATH + "set_estado.php",
+                    url: WS_PATH + "set_state.php",
                     data: bodyFormData,
                     timeout: 15000
                 })
