@@ -41,15 +41,8 @@
                 ></f7-list-item>
                 <f7-list-item
                         v-if="getUserRole === 'driver'"
-                        link="/orders-page/start"
+                        link="/pending-orders-page"
                         title="Comenzar orden"
-                        view="#main-view"
-                        panel-close
-                ></f7-list-item>
-                <f7-list-item
-                        v-if="getUserRole === 'driver'"
-                        link="/orders-page/terminate"
-                        title="Finalizar orden"
                         view="#main-view"
                         panel-close
                 ></f7-list-item>
