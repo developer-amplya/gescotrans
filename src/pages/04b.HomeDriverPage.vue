@@ -30,10 +30,10 @@
             <!-- Orders -->
             <orders-list :orders="orders[1]" state="ER"></orders-list>
 
-            <!--p v-if="orders.length" class="no-orders">NO HAY ÓRDENES EN MARCHA</p-->
+            <p v-if="!ordersInProgress" class="no-orders">NO HAY ÓRDENES EN MARCHA</p>
         </f7-block>
 
-        <Footer />
+        <Footer/>
 
     </f7-page>
 </template>
@@ -47,15 +47,23 @@
 
     export default {
         name: "HomeDriverPage",
-        components: {Footer, OrdersList},
+        components: { Footer, OrdersList },
         data() {
             return {
                 today: '',
-                orders: []
+                orders: [],
             };
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass", "getUserCode"])
+            ...mapGetters(["getUserName", "getUserPass", "getUserCode"]),
+            ordersInProgress: function () {
+                if (this.orders.length !== 0) {
+                    let filteredArray = this.orders[1].filter((item) => {
+                        return item[5] === 'ER'
+                    });
+                    return filteredArray.length > 0;
+                }
+            }
         },
         mounted() {
             const d = new Date()
@@ -66,8 +74,7 @@
             this.today = `${ye}-${mo}-${da}`;
         },
         methods: {
-            viewTraffic()
-            {
+            viewTraffic() {
                 this.$f7router.navigate("/view-traffic");
             },
             retrieveData() {
@@ -102,7 +109,8 @@
 
                             let schedule = JSON.parse(
                                 this.decodeEntities(JSON.stringify(response.data.agenda))
-                            );console.log(schedule)
+                            );
+                            console.log(schedule)
 
                             // Set state
                             this.$store.dispatch("setSchedule", schedule);
@@ -153,12 +161,6 @@
 </script>
 
 <style scoped>
-    .button {
-        padding: 25px;
-        line-height: 1px;
-        text-transform: uppercase;
-    }
-
     li {
         list-style: none;
         margin: 50px 0;
@@ -168,6 +170,11 @@
         text-align: center;
         font-weight: bold;
         margin-top: 0;
+    }
+
+    .no-orders {
+        text-align: center;
+        color: #107ED6;
     }
 </style>
 
