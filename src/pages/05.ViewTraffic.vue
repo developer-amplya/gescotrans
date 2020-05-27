@@ -44,11 +44,6 @@
             </f7-page-content>
         </f7-sheet>
 
-        <!-- Floating Action Button -->
-        <f7-fab v-if="getUserRole === 'admin'" position="right-bottom" slot="fixed" color="blue" href="/cargo-note">
-            <f7-icon ios="f7:add" md="material:add"></f7-icon>
-        </f7-fab>
-
     </f7-page>
 </template>
 
