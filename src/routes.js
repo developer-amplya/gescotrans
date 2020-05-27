@@ -100,7 +100,7 @@ export default [
         component: PendingOrdersPage
     },
     {
-        path: '/order-detail-page/:action',
+        path: '/order-detail-page/:note_code',
         component: OrderDetailPage,
         props: true
     },
