@@ -1,7 +1,7 @@
 <template>
     <f7-page @page:afterin="retrieveData">
 
-        <f7-navbar back-link="Volver">
+        <f7-navbar back-link="Volver" back-link-force back-link-url="/home-driver">
             <f7-nav-title>
                 <span>Comenzar orden</span>
             </f7-nav-title>
