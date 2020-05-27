@@ -66,8 +66,8 @@
         </f7-block>
 
         <!-- SUBMIT -->
-        <f7-toolbar no-hairline position="bottom">
-            <f7-button large fill raised @click="">Acción</f7-button>
+        <f7-toolbar no-hairline position="bottom" v-if="action !== ''">
+            <f7-button large fill raised @click="handleAction">{{ actionLabel }}</f7-button>
         </f7-toolbar>
 
     </f7-page>
@@ -84,6 +84,8 @@
         props: ['note_code'],
         data() {
             return {
+                action: '',
+                actionLabel: '',
                 note: {
                     service_name: '',
                     service_date: '',
@@ -145,6 +147,14 @@
                         this.note.license_plate = note.matricula;
                         this.note.driver_name = note.nom_chofer;
 
+                        if (note.estado === 'AS') {
+                            this.action = 'start';
+                            this.actionLabel = 'Comenzar';
+                        } else if (note.estado === 'ER') {
+                            this.action = 'terminate';
+                            this.actionLabel = 'Finalizar';
+                        }
+
                     } else {
                         this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
                     }
@@ -157,6 +167,73 @@
                 });
         },
         methods: {
+            handleAction() {
+                if (this.action === 'start') {
+                    this.start_order();
+                } else if (this.action === 'terminate') {
+                    this.$f7router.navigate('/delivery-note/' + this.note_code);
+                }
+            },
+            start_order() {
+                // Preloader On
+                this.$f7.dialog.preloader("Enviando...");
+
+                // Get schedule
+                let bodyFormData = new FormData();
+                bodyFormData.set("user", this.getUserName);
+                bodyFormData.set("pass", this.getUserPass);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+                //--------------------------------------
+                bodyFormData.set("cod_nota", this.note_code);
+                bodyFormData.set("matricula", '');
+                bodyFormData.set("cod_estado", 'ER');
+
+                axios({
+                    method: "post",
+                    url: WS_PATH + "set_state.php",
+                    data: bodyFormData,
+                    timeout: 15000
+                })
+                    .then(response => {
+
+                        console.log(response);
+
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.res === 0) {
+                            //
+                            let notification = this.$f7.toast.create({
+                                position: 'top',
+                                text: "Guardado",
+                                cssClass: "success",
+                                icon: '<i class="icon material-icons">done</i>',
+                                closeTimeout: 2000
+                            });
+                            notification.open();
+                            //
+                            setTimeout(() => {
+                                this.retrieveData();
+                            }, 2000);
+
+                            this.$f7router.navigate('/pending-orders-page')
+
+                        } else {
+
+                            this.$f7.dialog.alert(response.data.error, "Error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
+            },
             decodeEntities(encodedString) {
                 var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
                 var translate = {
