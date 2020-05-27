@@ -15,7 +15,7 @@ import SuppliersList from './pages/10.SuppliersList.vue';
 import LicensePlatesList from './pages/11.LicensePlatesList.vue';
 import DriversList from './pages/12.DriversList.vue';
 import CalendarPage from './pages/13.CalendarPage.vue';
-import OrdersPage from './pages/14.OrdersPage.vue';
+import PendingOrdersPage from './pages/14.PendingOrdersPage.vue';
 import OrderDetailPage from './pages/15.OrderDetailPage.vue';
 import ResetStorePage from './pages/ResetStorePage.vue';
 import PanelRightPage from './pages/panel-right.vue';
@@ -96,9 +96,8 @@ export default [
         component: CalendarPage
     },
     {
-        path: '/orders-page/:action',
-        component: OrdersPage,
-        props: true
+        path: '/pending-orders-page',
+        component: PendingOrdersPage
     },
     {
         path: '/order-detail-page/:action',

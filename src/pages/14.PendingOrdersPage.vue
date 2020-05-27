@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import OrdersList from '../layout/OrdersList.vue';
+    import OrdersList from '../layout/OrdersListPending.vue';
 
     export default {
         name: 'OrdersPage',

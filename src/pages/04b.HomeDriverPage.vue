@@ -21,7 +21,7 @@
             </f7-card>
 
             <f7-list-item>
-                <f7-button fill raised href="/orders-page/start">Comenzar orden</f7-button>
+                <f7-button fill raised href="/pending-orders-page">Comenzar orden</f7-button>
             </f7-list-item>
 
             <!-- Orders -->
