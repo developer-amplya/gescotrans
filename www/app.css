@@ -19198,29 +19198,28 @@ footer {
 }
 
 
-.active[data-v-b877583c] {
+.active[data-v-3000bc95] {
     background-color: #0c82df !important;
     color: #ffffff;
 }
-.col-20[data-v-b877583c], .col-60[data-v-b877583c] {
-    padding: 8px 4px;
-}
-.dark[data-v-b877583c] {
+.dark[data-v-3000bc95] {
     background-color: #dddddd;
 }
-li[data-v-b877583c] {
+li[data-v-3000bc95] {
     list-style: none;
-    height: 40px;
-    line-height: 40px;
-    padding-left: 6px;
-    padding-right: 6px;
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    padding: 6px;
     overflow: hidden;
 }
-.light[data-v-b877583c] {
+.light[data-v-3000bc95] {
     background-color: #eeeeee;
 }
-.row[data-v-b877583c] {
+.row[data-v-3000bc95] {
     background-color: transparent;
+}
+p[data-v-3000bc95], h4[data-v-3000bc95] {
+    margin: 0;
 }
 
 
@@ -19232,6 +19231,11 @@ li[data-v-b877583c] {
 li[data-v-c54ba66c] {
     list-style: none;
     margin: 50px 0;
+}
+.in-progress-header[data-v-c54ba66c] {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
 }
 
 
@@ -19256,6 +19260,25 @@ li[data-v-c54ba66c] {
     width: 100%;
 }
 .ios .toolbar[data-v-1a59413a] {
+    height: 64px !important;
+}
+
+
+.custom-input {
+    background-color: #eeeeee;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    margin: 6px;
+    padding: 4px;
+    width: 100%;
+}
+.custom-input .input-with-value {
+    font-weight: bold !important;
+}
+.toolbar .button {
+    width: 100%;
+}
+.ios .toolbar {
     height: 64px !important;
 }
 
@@ -19388,6 +19411,11 @@ li[data-v-c54ba66c] {
 .item-divider[data-v-bcae34c0] {
     font-weight: bold;
     color: #0C3D87 !important;
+}
+
+
+.no-orders[data-v-71262938] {
+    text-align: center;
 }
 
 
