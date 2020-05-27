@@ -1,5 +1,6 @@
 <template>
-    <f7-page>
+    <f7-page @page:afterin="retrieveData">
+
         <!-- Navbar -->
         <f7-navbar>
             <f7-nav-title>Inicio</f7-nav-title>
@@ -24,8 +25,12 @@
                 <f7-button fill raised href="/pending-orders-page">Comenzar orden</f7-button>
             </f7-list-item>
 
+            <p class="in-progress-header">ÓRDENES EN MARCHA</p>
+
             <!-- Orders -->
-            <orders-list :orders="orders" @order-selected="handleSelected"></orders-list>
+            <orders-list :orders="orders[1]" state="ER"></orders-list>
+
+            <!--p v-if="orders.length" class="no-orders">NO HAY ÓRDENES EN MARCHA</p-->
         </f7-block>
 
         <Footer />
@@ -34,7 +39,9 @@
 </template>
 
 <script>
-    import {mapGetters} from "vuex";
+    import axios from "axios";
+    import { WS_PATH } from "../config";
+    import { mapGetters } from "vuex";
     import Footer from '../layout/Footer';
     import OrdersList from '../layout/OrdersList.vue';
 
@@ -43,34 +50,103 @@
         components: {Footer, OrdersList},
         data() {
             return {
-                selected: '',
-                orders: [
-                    {code: '12345', description: 'Lorem ipsum amet sicut dolor'},
-                    {code: '12346', description: 'Lorem ipsum amet sicut dolor'},
-                    {code: '12347', description: 'Lorem ipsum amet sicut dolor'},
-                    {code: '12348', description: 'Lorem ipsum amet sicut dolor'},
-                    {code: '12349', description: 'Lorem ipsum amet sicut dolor'}
-                ]
+                today: '',
+                orders: []
             };
         },
         computed: {
-            ...mapGetters([])
+            ...mapGetters(["getUserName", "getUserPass", "getUserCode"])
+        },
+        mounted() {
+            const d = new Date()
+            const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+            const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d)
+            const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+
+            this.today = `${ye}-${mo}-${da}`;
         },
         methods: {
             viewTraffic()
             {
                 this.$f7router.navigate("/view-traffic");
             },
-            newCargoNote()
-            {
-                this.$f7router.navigate("/cargo-note");
+            retrieveData() {
+                // Preloader On
+                this.$f7.dialog.preloader("Cargando...");
+
+                // Get schedule
+                let bodyFormData = new FormData();
+                bodyFormData.set("user", this.getUserName);
+                bodyFormData.set("pass", this.getUserPass);
+                bodyFormData.set("cod_chofer", this.getUserCode);
+                bodyFormData.set("ipgsbase", localStorage.aytrans_ipgsbase);
+                bodyFormData.set("gestgsbase", localStorage.aytrans_gestgsbase);
+                bodyFormData.set("aplgsbase", localStorage.aytrans_aplgsbase);
+                bodyFormData.set("ejagsbase", localStorage.aytrans_ejagsbase);
+                bodyFormData.set("puertogsbase", localStorage.aytrans_puertogsbase);
+
+                axios({
+                    method: "post",
+                    url: WS_PATH + "get_agenda_chofer.php",
+                    data: bodyFormData,
+                    timeout: 15000
+                })
+                    .then(response => {
+
+                        console.log(response);
+
+                        // Preloader Off
+                        this.$f7.dialog.close();
+
+                        if (response.data.usuario_valido === true) {
+
+                            let schedule = JSON.parse(
+                                this.decodeEntities(JSON.stringify(response.data.agenda))
+                            );console.log(schedule)
+
+                            // Set state
+                            this.$store.dispatch("setSchedule", schedule);
+
+                            // Get only what we need
+                            this.orders = schedule[this.today];
+
+                        } else {
+                            this.$f7.dialog.alert("gsBase ha respondido KO", "Error");
+                        }
+                    })
+                    .catch(error => {
+                        //console.log(error);
+                        // Preloader Off
+                        this.$f7.dialog.close();
+                        this.$f7.dialog.alert("No se ha podido conectar", "Error");
+                    });
             },
-            newCustomer()
-            {
-                //
-            },
-            handleSelected (code) {
-                console.log(code);
+            decodeEntities(encodedString) {
+                var translate_re = /&(aacute|eacute|iacute|oacute|uacute|ntilde|Aacute|Eacute|Iacute|Oacute|Uacute|Ntilde|ordf|ordm);/g;
+                var translate = {
+                    aacute: "á",
+                    eacute: "é",
+                    iacute: "í",
+                    oacute: "ó",
+                    uacute: "ú",
+                    ntilde: "ñ",
+                    Aacute: "Á",
+                    Eacute: "É",
+                    Iacute: "Í",
+                    Oacute: "Ó",
+                    Uacute: "Ú",
+                    Ntilde: "Ñ",
+                    ordf: "ª",
+                    ordm: "º"
+                };
+                return encodedString
+                    .replace(translate_re, function (match, entity) {
+                        return translate[entity];
+                    })
+                    .replace(/&#(\d+);/gi, function (match, numStr) {
+                        var num = parseInt(numStr, 10);
+                        return String.fromCharCode(num);
+                    });
             }
         }
     };
@@ -86,6 +162,12 @@
     li {
         list-style: none;
         margin: 50px 0;
+    }
+
+    .in-progress-header {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 0;
     }
 </style>
 
