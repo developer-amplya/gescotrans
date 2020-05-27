@@ -161,6 +161,11 @@
                     });
             },
             openActionsSheet(code, status) {
+                // El conductor es dirigido a otra vista de sólo lectura
+                if(this.getUserRole === 'driver') {
+                    this.$f7router.navigate("/order-detail-page/" + this.shipment_code);
+                }
+
                 if(status === 'FN')
                     return;
                 this.shipment_code = code;
