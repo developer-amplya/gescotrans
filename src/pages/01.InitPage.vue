@@ -14,7 +14,7 @@
 
             <!-- Version -->
             <div class="version">
-                <small>v.0.0.34</small>
+                <small>v.0.0.35</small>
             </div>
         </f7-toolbar>
     </f7-page>
