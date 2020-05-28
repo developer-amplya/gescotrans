@@ -31,6 +31,7 @@
     font-size: 18px;
     margin: -20px 10px 5px 15px !important;
     padding-bottom: 15px !important;
+    color: #222222;
 }
 
 .card h1 {
@@ -78,6 +79,11 @@
 
 .center .img-100 {
     width: 100%;
+}
+
+input[type="text"] {
+    font-weight: bold;
+    color: #222222;
 }
 
 /* Sticky footer **************************************************************************************************** */

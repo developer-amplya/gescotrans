@@ -13,26 +13,28 @@
 
         <f7-block>
 
-            <f7-list form no-hairlines>
-                <!-- ALBARÁN -->
-                <f7-list-input
-                        type="text"
-                        label="Nº de albarán"
-                        :value="delivery_note_number"
-                        @input="delivery_note_number = $event.target.value"
-                ></f7-list-input>
+            <!-- ALBARÁN -->
+            <f7-row>
+                <div class="custom-input">
+                    <div class="item-title item-label">Nº de albarán</div>
+                    <f7-input
+                            class="custom-input-text"
+                            type="text"
+                            :value="delivery_note_number"
+                            @input="delivery_note_number = $event.target.value"
+                    ></f7-input>
+                </div>
+            </f7-row>
 
-                <f7-list-item v-if="image_data_source !== null">
-                    <div class="scanned-img">
-                        <img ref="scanned_image" :src="image_data_src"></img>
-                    </div>
-                </f7-list-item>
+            <f7-row v-if="image_data_source !== null">
+                <div>
+                    <img ref="scanned_image" :src="image_data_src"></img>
+                </div>
+            </f7-row>
 
-                <f7-list-item>
-                    <image-selector @image_selected="setImageData"></image-selector>
-                </f7-list-item>
-
-            </f7-list>
+            <f7-row>
+                <image-selector @image_selected="setImageData"></image-selector>
+            </f7-row>
 
             <!--f7-button outline large @click="scanDeliveryNote" :text="button_text" sheet-close></f7-button-->
 
@@ -48,8 +50,8 @@
 
 <script>
     import axios from "axios";
-    import {WS_PATH} from "../config";
-    import {mapGetters} from "vuex";
+    import { WS_PATH } from "../config";
+    import { mapGetters } from "vuex";
     import ImageSelector from '../components/ImageSelector';
 
     export default {
@@ -176,6 +178,20 @@
 </script>
 
 <style scoped>
+    .custom-input {
+        background-color: #eeeeee;
+        border: 1px solid #b9b9b9;
+        border-radius: 5px;
+        margin: 6px;
+        padding: 4px;
+        width: 100%;
+    }
+
+    .custom-input-text > input {
+        font-size: 18px !important;
+        text-align: center !important;
+    }
+
     .scanned-img img {
         width: 100%;
     }

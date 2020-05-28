@@ -296,7 +296,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .custom-input {
         background-color: #eeeeee;
         border: 1px solid #b9b9b9;
@@ -306,7 +306,8 @@
         width: 100%;
     }
 
-    .custom-input .input-with-value {
+    .custom-input .input-with-value,
+    input {
         font-weight: bold !important;
     }
 

@@ -275,4 +275,12 @@
     .detail p {
         margin: 5px 0;
     }
+
+    .toolbar .button {
+        width: 100%;
+    }
+
+    .ios .toolbar {
+        height: 64px !important;
+    }
 </style>

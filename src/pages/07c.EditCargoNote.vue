@@ -389,7 +389,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .custom-input {
         background-color: #eeeeee;
         border: 1px solid #b9b9b9;
