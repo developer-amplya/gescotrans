@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page @page:beforeout="$refs.confirm_sheet.close()">
 
         <!-- Navbar -->
         <f7-navbar back-link>
@@ -12,7 +12,7 @@
         </f7-navbar>
 
         <f7-block>
-
+<p> {{newLicensePlate}}</p>
             <div class="detail">
                 <p><strong>Servicio</strong></p>
                 <p>{{ note.service_name }}</p>
@@ -70,6 +70,22 @@
             <f7-button large fill raised @click="handleAction">{{ actionLabel }}</f7-button>
         </f7-toolbar>
 
+        <!-- Sheet -->
+        <f7-sheet class="sheet" ref="confirm_sheet" @sheet:closed="sheetOpened = false">
+            <!-- Scrollable sheet content -->
+            <f7-page-content>
+                <f7-block style="margin-top: 20px">
+                    <h3>Matrícula: <span class="lp">{{ note.license_plate }}</span></h3>
+                    <f7-button outline large :href="'/license-plates-list/' + note.supplier_code" sheet-close>Cambiar
+                    </f7-button>
+                    <br>
+                    <f7-button outline large @click="start_order" sheet-close>Confirmar</f7-button>
+                    <br>
+                    <f7-button outline large sheet-close>Cancelar</f7-button>
+                </f7-block>
+            </f7-page-content>
+        </f7-sheet>
+
     </f7-page>
 
 </template>
@@ -92,6 +108,7 @@
                     service_time: '',
                     service_comments: '',
                     customer_name: '',
+                    supplier_code: '',
                     supplier_name: '',
                     license_plate: '',
                     driver_name: '',
@@ -99,7 +116,17 @@
             }
         },
         computed: {
-            ...mapGetters(["getUserName", "getUserPass"])
+            ...mapGetters(["getUserName", "getUserPass", 'getLicensePlate']),
+
+            // Si existe una matrícula en el estado reemplaza a la de la nota
+            newLicensePlate: function () {
+                if (this.getLicensePlate !== 'Seleccionar...') {
+                    this.note.license_plate = this.getLicensePlate;
+                }
+            }
+        },
+        watch: {
+
         },
         mounted() {
 
@@ -144,6 +171,7 @@
                         this.note.service_comments = note.txt_observaciones;
                         this.note.customer_name = note.nom_cliente;
                         this.note.supplier_name = note.nom_proveedor;
+                        this.note.supplier_code = note.cod_proveedor;
                         this.note.license_plate = note.matricula;
                         this.note.driver_name = note.nom_chofer;
 
@@ -169,7 +197,7 @@
         methods: {
             handleAction() {
                 if (this.action === 'start') {
-                    this.start_order();
+                    this.$refs.confirm_sheet.open();
                 } else if (this.action === 'terminate') {
                     this.$f7router.navigate('/delivery-note/' + this.note_code);
                 }
@@ -206,7 +234,10 @@
                         this.$f7.dialog.close();
 
                         if (response.data.res === 0) {
-                            //
+                            // Reset state
+                            this.$store.dispatch("setLicensePlate", 'Seleccionar...');
+
+                            // Mensaje
                             let notification = this.$f7.toast.create({
                                 position: 'top',
                                 text: "Guardado",
@@ -282,5 +313,10 @@
 
     .ios .toolbar {
         height: 64px !important;
+    }
+
+    .lp {
+        padding-left: 10px;
+        color: #107ED6;
     }
 </style>
