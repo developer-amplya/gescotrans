@@ -276,8 +276,7 @@
                     this.getCustomer[0] === '' ||
                     this.getSupplier[0] === '' ||
                     this.getCargoNoteDate === null ||
-                    this.service_name === '' ||
-                    this.service_price === 0
+                    this.service_name === ''
                 ) {
                     this.$f7.dialog.alert("Debe completar todos los datos", "Atención");
                     return;

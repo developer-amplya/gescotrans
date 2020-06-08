@@ -211,7 +211,6 @@
                     this.getService[0] === '' ||
                     this.getSupplier[0] === '' ||
                     this.getCargoNoteDate === null ||
-                    this.price === 0 ||
                     this.time === 'Hora'
                 ) { // ES OBLIGADO ELEGIR MATRÍCULA Y CONDUCTOR?
                     this.$f7.dialog.alert("Debe completar todos los datos", "Atención");

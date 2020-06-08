@@ -216,7 +216,6 @@
                     this.getSupplier[0] === '' ||
                     this.getCargoNoteDate === null ||
                     this.service_name === '' ||
-                    this.price === 0 ||
                     this.time === 'Hora'
                 ) {
                     this.$f7.dialog.alert("Debe completar todos los datos", "Atención");
