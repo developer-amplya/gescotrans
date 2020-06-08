@@ -18,7 +18,7 @@
                 ></f7-list-item>
                 <f7-list-item
                         v-if="getUserRole === 'admin'"
-                        link="/cargo-note"
+                        link="/cargo-note-select-service"
                         title="Nota de Carga"
                         footer="Seleccionar servicio"
                         view="#main-view"
@@ -26,7 +26,7 @@
                 ></f7-list-item>
                 <f7-list-item
                         v-if="getUserRole === 'admin'"
-                        link="/cargo-note"
+                        link="/cargo-note-custom-service"
                         title="Nota de Carga"
                         footer="Servicio personalizado"
                         view="#main-view"
